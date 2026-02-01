@@ -34,7 +34,7 @@ export const resume = {
         {
             role: "Specialized Warehouse Worker",
             company: "Massimo Dutti",
-            period: "Current",
+            period: "Finalized",
             description:
                 "Leadership in optimizing logistics processes using RFID technology. Effective collaboration in high-performance teams under pressure.",
         },

@@ -1,6 +1,7 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
+import Certification from "./components/Certification";
 import Skills from "./components/Skills";
 import Experience from "./components/Experience";
 import Contact from "./components/Contact";
@@ -13,6 +14,7 @@ export default function Home() {
             <Hero />
             <div className="space-y-20 pb-20">
                 <About />
+                <Certification />
                 <Skills />
                 <Experience />
                 <Contact />
