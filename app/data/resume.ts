@@ -27,9 +27,20 @@ export const resume = {
             "Windows Server Admin",
             "Virtualization (VMware, VirtualBox)",
             "Cloud Computing",
+            "NAS Storage Implementation",
         ],
         development: ["SQL / MySQL", "Python (Basic)", "Bash Scripting"],
     },
+    projects: [
+        {
+            title: "Secure Enterprise Infrastructure & Centralized Auth",
+            role: "Lead Systems Architect",
+            tech: ["OpenLDAP", "MariaDB", "Zabbix", "Telegram API", "TrueNAS", "Bash"],
+            description: "Designed a fault-tolerant network architecture featuring centralized authentication via OpenLDAP with Roaming Profiles, ensuring user data portability across any workstation. Implemented automated backup pipelines to a dedicated NAS. Integrated a Zabbix monitoring ecosystem with real-time critical alerts pushed to Telegram, ensuring 99.9% uptime visibility.",
+            challenges: ["Data Fragmentation", "Monitoring Blindness", "High Availability"],
+            solutions: ["Unified Auth Layer", "Real-time Telegram Alerts", "RAID-Z Storage"]
+        }
+    ],
     experience: [
         {
             role: "Specialized Warehouse Worker",
