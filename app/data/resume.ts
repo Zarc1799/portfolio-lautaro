@@ -3,8 +3,8 @@ export const resume = {
         name: "Lautaro Enrique Mir",
         title: "Cybersecurity & Network Systems Expert",
         location: "Barcelona, Spain",
-        email: "tu_email@ejemplo.com", // Placeholder as per CV
-        linkedin: "tu_perfil_linkedin", // Placeholder
+        email: "lautaromir2@gmail.com",
+        linkedin: "https://www.linkedin.com/in/lautaro-enrique-mir-9390b0309",
         summary:
             "Proactive and passionate Network Systems Administrator with a strong foundation in networks, systems, and a marked interest in cybersecurity. Certified Mikrotik MTCN. Actively seeking opportunities to apply knowledge in network configuration, system administration, and infrastructure protection.",
     },
