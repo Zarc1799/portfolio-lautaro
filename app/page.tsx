@@ -1,0 +1,23 @@
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Skills from "./components/Skills";
+import Experience from "./components/Experience";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+
+export default function Home() {
+    return (
+        <main className="bg-cyber-background min-h-screen text-cyber-text selection:bg-cyber-primary/30 selection:text-cyber-primary">
+            <Navbar />
+            <Hero />
+            <div className="space-y-20 pb-20">
+                <About />
+                <Skills />
+                <Experience />
+                <Contact />
+            </div>
+            <Footer />
+        </main>
+    );
+}
