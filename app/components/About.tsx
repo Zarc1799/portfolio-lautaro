@@ -70,7 +70,7 @@ export default function About() {
                                         {`{
   "status": "Active",
   "role": "${resume.personalInfo.title}",
-  "clearance": "Level 3",
+  "clearance": "Level 1",
   "languages": [
     "Spanish (Native)",
     "Catalan (Native)",
