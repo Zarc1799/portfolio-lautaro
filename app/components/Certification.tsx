@@ -56,8 +56,6 @@ export default function Certification() {
 
                         <div className="flex justify-between items-end">
                             <div className="text-xs text-cyber-muted font-mono">
-                                ID: MIK-8842-X9L<br />
-                                VALID: LIFETIME
                             </div>
                             <Cpu size={32} className="text-cyber-secondary/50" />
                         </div>

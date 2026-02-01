@@ -47,7 +47,7 @@ export default function About() {
                                 </div>
                                 <div className="flex items-center gap-3 text-cyber-text">
                                     <Linkedin className="text-cyber-secondary" />
-                                    <a href="#" className="hover:text-cyber-primary transition-colors">
+                                    <a href={resume.personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-cyber-primary transition-colors">
                                         LinkedIn Profile
                                     </a>
                                 </div>
