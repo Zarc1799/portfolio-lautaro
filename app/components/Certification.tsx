@@ -34,7 +34,7 @@ export default function Certification() {
                         x.set(0);
                         y.set(0);
                     }}
-                    className="relative w-full max-w-md aspect-[1.586/1] rounded-xl bg-gradient-to-br from-cyber-surface to-slate-900 border border-cyber-primary/30 shadow-[0_0_50px_rgba(6,182,212,0.2)] cursor-pointer group"
+                    className="relative w-full max-w-sm md:max-w-md aspect-[1.586/1] rounded-xl bg-gradient-to-br from-cyber-surface to-slate-900 border border-cyber-primary/30 shadow-[0_0_50px_rgba(6,182,212,0.2)] cursor-pointer group touch-none"
                 >
                     {/* Holographic Overlay */}
                     <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ transform: "translateZ(50px)" }} />
@@ -51,7 +51,7 @@ export default function Certification() {
 
                         <div className="text-center space-y-2">
                             <div className="text-cyber-muted text-sm tracking-[0.2em] uppercase">Certified Network Associate</div>
-                            <h3 className="text-3xl md:text-4xl font-black text-white text-glow">MTCNA</h3>
+                            <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white text-glow">MTCNA</h3>
                         </div>
 
                         <div className="flex justify-between items-end">

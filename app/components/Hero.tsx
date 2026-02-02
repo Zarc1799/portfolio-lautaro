@@ -51,8 +51,10 @@ export default function Hero() {
                     </span>
                 </h1>
 
-                <div className="h-8 mb-8 font-mono text-cyber-muted text-lg md:text-xl">
-                    {text}
+                <div className="h-20 sm:h-8 mb-8 font-mono text-cyber-muted text-lg md:text-xl flex items-center justify-center">
+                    <span className="break-all">
+                        {text}
+                    </span>
                     <span className="animate-pulse">_</span>
                 </div>
 

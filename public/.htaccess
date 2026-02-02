@@ -1,0 +1,62 @@
+# ----------------------------------------------------------------------
+# | Security Headers & Force HTTPS                                     |
+# ----------------------------------------------------------------------
+
+<IfModule mod_headers.c>
+    # Force HTTPS
+    RewriteEngine On
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # HSTS (HTTP Strict Transport Security)
+    # Forces browsers to only communicate via HTTPS
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+    # X-Content-Type-Options
+    # Prevents MIME-sniffing
+    Header set X-Content-Type-Options "nosniff"
+
+    # X-Frame-Options
+    # Prevents Clickjacking (allows same origin for own iframes if needed)
+    Header set X-Frame-Options "SAMEORIGIN"
+
+    # X-XSS-Protection
+    # Enables browser XSS filtering
+    Header set X-XSS-Protection "1; mode=block"
+
+    # Referrer Policy
+    # Controls how much referrer info is sent
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Content Security Policy (CSP)
+    # Basic robust policy allowing scripts/styles from self and safe sources (Google Fonts, Vercel)
+    # Adjust 'unsafe-inline' if you implement strict nonces later.
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*; connect-src 'self' https://vitals.vercel-insights.com;"
+    
+    # Permissions Policy
+    # Disables sensitive features not used by the portfolio
+    Header set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+</IfModule>
+
+# ----------------------------------------------------------------------
+# | URL Hiding (Clean URLs)                                            |
+# ----------------------------------------------------------------------
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Remove .html extension from URL
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.html -f
+    RewriteRule ^(.*)$ $1.html [L]
+    
+    # Redirect external requests to .html to clean URL
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.html [NC]
+    RewriteRule ^ %1 [R=301,L]
+</IfModule>
+
+# ----------------------------------------------------------------------
+# | Custom Error Pages                                                 |
+# ----------------------------------------------------------------------
+
+ErrorDocument 404 /404.html
