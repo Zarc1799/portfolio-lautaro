@@ -1,21 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { resume } from "../data/resume";
-import { Server, Database, Activity, Lock, ArrowUpRight } from "lucide-react";
+import { Lock } from "lucide-react";
 import NetworkDiagram from "./NetworkDiagram";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Projects() {
+    const { t } = useLanguage();
+
     return (
         <section id="projects" className="py-20 bg-cyber-surface/30">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-3xl font-bold mb-12 flex items-center gap-3">
                     <span className="text-cyber-primary">03.</span>
-                    Major Deployments
+                    {t.projects.title}
                 </h2>
 
                 <div className="grid gap-12">
-                    {resume.projects.map((project, index) => (
+                    {t.projects.list.map((project, index) => (
                         <motion.div
                             key={index}
                             initial={{ opacity: 0, y: 30 }}
@@ -29,7 +31,7 @@ export default function Projects() {
                                 {/* Left: Info */}
                                 <div className="space-y-6">
                                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyber-primary/10 text-cyber-primary text-xs font-mono border border-cyber-primary/20">
-                                        <Lock size={12} /> ENTERPRISE GRADE
+                                        <Lock size={12} /> {t.projects.badge}
                                     </div>
 
                                     <h3 className="text-3xl font-bold text-white group-hover:text-glow transition-all">
@@ -54,7 +56,7 @@ export default function Projects() {
                                     <div className="absolute inset-0 bg-cyber-primary/5 rounded-xl blur-xl" />
                                     <NetworkDiagram />
                                     <p className="text-center text-xs text-cyber-muted mt-2 font-mono opacity-70">
-                                        [INTERACTIVE TOPOLOGY - HOVER NODES FOR DETAILS]
+                                        {t.networkDiagram.dragHint}
                                     </p>
                                 </div>
                             </div>

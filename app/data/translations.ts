@@ -184,6 +184,17 @@ export const translations = {
         },
         github: {
             locked: "ACCESS DENIED // COMING SOON",
+        },
+        projects: {
+            title: "Major Deployments",
+            badge: "ENTERPRISE GRADE",
+            list: [
+                {
+                    title: "Secure Enterprise Infrastructure & Centralized Auth",
+                    description: "Designed a fault-tolerant network architecture featuring centralized authentication via OpenLDAP with Roaming Profiles, ensuring user data portability across any workstation. Implemented automated backup pipelines to a dedicated NAS. Integrated a Zabbix monitoring ecosystem with real-time critical alerts pushed to Telegram, ensuring 99.9% uptime visibility.",
+                    tech: ["OpenLDAP", "MariaDB", "Zabbix", "Telegram API", "TrueNAS", "Bash"]
+                }
+            ]
         }
     },
     es: {
@@ -369,6 +380,17 @@ export const translations = {
         },
         github: {
             locked: "ACCESO DENEGADO // PRÓXIMAMENTE",
+        },
+        projects: {
+            title: "Despliegues Mayores",
+            badge: "GRADO EMPRESARIAL",
+            list: [
+                {
+                    title: "Infraestructura Empresarial Segura y Autenticación Centralizada",
+                    description: "Diseñé una arquitectura de red tolerante a fallos con autenticación centralizada vía OpenLDAP y Perfiles Móviles, asegurando la portabilidad de datos de usuario en cualquier estación. Implementé pipelines de backup automatizados a un NAS dedicado. Integré un ecosistema de monitorización Zabbix con alertas críticas en tiempo real a Telegram, asegurando visibilidad de uptime del 99.9%.",
+                    tech: ["OpenLDAP", "MariaDB", "Zabbix", "Telegram API", "TrueNAS", "Bash"]
+                }
+            ]
         }
     },
     ca: {
@@ -554,6 +576,17 @@ export const translations = {
         },
         github: {
             locked: "ACCÉS DENEGAT // PRÒXIMAMENT",
+        },
+        projects: {
+            title: "Desplegaments Majors",
+            badge: "GRAU EMPRESARIAL",
+            list: [
+                {
+                    title: "Infraestructura Empresarial Segura i Autenticació Centralitzada",
+                    description: "Vaig dissenyar una arquitectura de xarxa tolerant a fallades amb autenticació centralitzada via OpenLDAP i Perfils Mòbils, assegurant la portabilitat de dades d'usuari a qualsevol estació. Vaig implementar pipelines de còpia de seguretat automatitzats a un NAS dedicat. Vaig integrar un ecosistema de monitoratge Zabbix amb alertes crítiques en temps real a Telegram, assegurant visibilitat d'uptime del 99.9%.",
+                    tech: ["OpenLDAP", "MariaDB", "Zabbix", "Telegram API", "TrueNAS", "Bash"]
+                }
+            ]
         }
     },
     zh: {
@@ -740,6 +773,17 @@ export const translations = {
         },
         github: {
             locked: "访问被拒绝 // 即将推出",
+        },
+        projects: {
+            title: "主要部署",
+            badge: "企业级",
+            list: [
+                {
+                    title: "安全企业基础设施与集中认证",
+                    description: "设计了一个具有通过 OpenLDAP 和漫游配置文件进行集中认证的容错网络架构，确保用户数据在任何工作站上的可移植性。实施了自动备份管道到专用 NAS。集成了 Zabbix 监控生态系统，将实时关键警报推送到 Telegram，确保 99.9% 的正常运行时间可见性。",
+                    tech: ["OpenLDAP", "MariaDB", "Zabbix", "Telegram API", "TrueNAS", "Bash"]
+                }
+            ]
         }
     },
 };
