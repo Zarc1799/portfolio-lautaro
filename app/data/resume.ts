@@ -6,6 +6,7 @@ export const resume = {
         email: "lautaromir2@gmail.com",
         phone: "+34 627 623 807",
         linkedin: "https://www.linkedin.com/in/lautaro-enrique-mir-9390b0309",
+        github: "https://github.com/Zarc1799",
         summary:
             "Network Systems Administrator & Systems Architect specialized in AI Automation and Custom Agents (n8n). Strong foundation in cybersecurity, Active Directory, and SQL Server. Expert in designing high-availability networks and implementing autonomously intelligent solutions for business efficiency.",
     },

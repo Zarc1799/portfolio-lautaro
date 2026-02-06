@@ -183,7 +183,7 @@ export const translations = {
             }
         },
         github: {
-            locked: "ACCESS DENIED // COMING SOON",
+            profile: "GitHub Profile",
         },
         projects: {
             title: "Major Deployments",
@@ -379,7 +379,7 @@ export const translations = {
             }
         },
         github: {
-            locked: "ACCESO DENEGADO // PRÓXIMAMENTE",
+            profile: "Perfil de GitHub",
         },
         projects: {
             title: "Despliegues Mayores",
@@ -575,7 +575,7 @@ export const translations = {
             }
         },
         github: {
-            locked: "ACCÉS DENEGAT // PRÒXIMAMENT",
+            profile: "Perfil de GitHub",
         },
         projects: {
             title: "Desplegaments Majors",
@@ -772,7 +772,7 @@ export const translations = {
             }
         },
         github: {
-            locked: "访问被拒绝 // 即将推出",
+            profile: "GitHub 个人资料",
         },
         projects: {
             title: "主要部署",

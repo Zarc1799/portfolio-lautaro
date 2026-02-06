@@ -76,18 +76,19 @@ export default function About() {
                                         {t.about.linkedin}
                                     </a>
                                 </div>
-                                {/* GitHub Button - Locked */}
-                                <div
-                                    className="flex items-center gap-3 text-cyber-muted/50 text-sm md:text-base cursor-not-allowed group"
-                                    onMouseEnter={() => play("error", 0.05)}
-                                >
-                                    <Github className="text-cyber-muted/50 group-hover:text-cyber-secondary/50 transition-colors" size={18} />
-                                    <span className="flex items-center gap-2">
+                                {/* GitHub Button - Active */}
+                                <div className="flex items-center gap-3 text-cyber-text text-sm md:text-base">
+                                    <Github className="text-cyber-secondary flex-shrink-0" size={18} />
+                                    <a
+                                        href={resume.personalInfo.github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:text-cyber-primary transition-colors truncate"
+                                        onMouseEnter={() => play("hover")}
+                                        onClick={() => play("click")}
+                                    >
                                         GitHub
-                                        <span className="text-xs border border-cyber-primary/30 rounded px-1 flex items-center gap-1 text-cyber-primary/70">
-                                            <Lock size={10} /> {t.github.locked}
-                                        </span>
-                                    </span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
