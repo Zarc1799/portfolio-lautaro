@@ -8,6 +8,7 @@ import DecryptedText from "./DecryptedText";
 import TerminalModal from "./TerminalModal";
 import { useLanguage } from "../context/LanguageContext";
 import { Language } from "../data/translations";
+import { useDarkWeb } from "../context/DarkWebContext";
 
 const navItems = [
     { nameKey: "identity", href: "#hero", icon: Terminal },
@@ -25,6 +26,7 @@ export default function Navbar() {
     const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
     const { language, setLanguage, t } = useLanguage();
     const { play } = useSound();
+    const { isDarkWeb } = useDarkWeb();
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -46,7 +48,8 @@ export default function Navbar() {
                     "fixed w-full z-50 transition-all duration-300 border-b",
                     scrolled
                         ? "bg-cyber-background/90 backdrop-blur-md border-cyber-primary/20 py-2"
-                        : "bg-transparent border-transparent py-4"
+                        : "bg-transparent border-transparent py-4",
+                    isDarkWeb && "top-[50px]"
                 )}
             >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

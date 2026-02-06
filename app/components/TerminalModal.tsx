@@ -216,7 +216,7 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
                 setHistory(prev => [...prev, "System is going down for halt NOW!", ""]);
                 setTimeout(() => {
                     document.body.innerHTML = `
-                    <div style="height:100vh;background:black;color:#ef4444;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:2rem;font-weight:bold;position:relative;flex-direction:column;gap:20px;">
+                    <div style="cursor: auto; height:100vh;background:black;color:#ef4444;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:2rem;font-weight:bold;position:relative;flex-direction:column;gap:20px;">
                         <div style="text-shadow: 0 0 10px #ef4444;">SYSTEM HALTED</div>
                         <div style="font-size: 1rem; color: #666;">It is now safe to turn off your computer.</div>
                         <button onclick="window.location.reload()" style="margin-top:20px;background:none;border:2px solid #ef4444;border-radius:50%;width:60px;height:60px;color:#ef4444;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;box-shadow: 0 0 15px rgba(239,68,68,0.3);">

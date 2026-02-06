@@ -2,13 +2,92 @@
 
 import { useWebOS } from "../context/WebOSContext";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Minus, Square, Monitor, FileText, Folder, Terminal } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { X, Minus, Square, Monitor, FileText, Terminal, Linkedin, Github, Mail, Phone, Globe } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
+
+// Mini Terminal Component for WebOS
+const InteractiveTerminal = () => {
+    const [history, setHistory] = useState<string[]>([
+        "LautaroOS v1.0.0 (tty1)",
+        "Login: root",
+        "Last login: Just now from 127.0.0.1",
+        "",
+        "Welcome to Lautaro's System.",
+        "Type 'help' for a list of commands.",
+        ""
+    ]);
+    const [input, setInput] = useState("");
+    const bottomRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [history]);
+
+    const handleCommand = (e: React.KeyboardEvent) => {
+        if (e.key === "Enter") {
+            const cmd = input.trim();
+            const newHistory = [...history, `root@lautaro-os:~# ${cmd}`];
+
+            switch (cmd.toLowerCase()) {
+                case "help":
+                    newHistory.push("Available commands: help, clear, whoami, ls, date, contact");
+                    break;
+                case "clear":
+                    setHistory([]);
+                    setInput("");
+                    return;
+                case "whoami":
+                    newHistory.push("root (System Architect)");
+                    break;
+                case "ls":
+                    newHistory.push("Documents  Downloads  Arsenal  Secrets");
+                    break;
+                case "date":
+                    newHistory.push(new Date().toString());
+                    break;
+                case "contact":
+                    newHistory.push("Email: contact@lautaromir.com");
+                    newHistory.push("Phone: +34 627 623 807");
+                    break;
+                case "":
+                    break;
+                default:
+                    newHistory.push(`bash: ${cmd}: command not found`);
+            }
+            setHistory(newHistory);
+            setInput("");
+        }
+    };
+
+    return (
+        <div className="bg-black p-4 font-mono text-xs h-full flex flex-col text-green-500" onClick={e => e.stopPropagation()}>
+            <div className="flex-1 overflow-y-auto">
+                {history.map((line, i) => (
+                    <div key={i} className="mb-1">{line}</div>
+                ))}
+                <div ref={bottomRef} />
+            </div>
+            <div className="flex items-center gap-2 mt-2 border-t border-green-900 pt-2">
+                <span>root@lautaro-os:~#</span>
+                <input
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={handleCommand}
+                    className="bg-transparent border-none outline-none flex-1 text-green-500 focus:ring-0"
+                    autoFocus
+                />
+            </div>
+        </div>
+    );
+};
 
 export default function DesktopEnvironment() {
     const { isWebOS, windows, closeApp, minimizeApp, openApp, toggleWebOS, registerApp } = useWebOS();
     const constraintsRef = useRef(null);
     const hasRegisteredRef = useRef(false);
+    const { language } = useLanguage();
 
     // Register Apps on Mount
     useEffect(() => {
@@ -18,30 +97,49 @@ export default function DesktopEnvironment() {
                 title: "README.txt",
                 icon: FileText,
                 component: (
-                    <div className="font-mono text-sm space-y-4">
-                        <p># LAUTARO MIR - SYSTEMS ARCHITECT</p>
-                        <p>Mission: Building digital fortresses and interactive experiences.</p>
-                        <p className="text-xs text-cyber-muted italic mt-2">Built with AI & Patience.</p>
-                        <br />
-                        <p>CONTACT:</p>
-                        <ul className="list-disc pl-4">
-                            <li>Email: contact@lautaromir.com</li>
-                            <li>GitHub: github.com/lautaromir</li>
-                        </ul>
+                    <div className="font-mono text-sm space-y-4 p-2">
+                        <h1 className="text-xl font-bold border-b border-gray-600 pb-2">LAUTARO MIR</h1>
+                        <p className="text-cyber-primary">SYSTEMS ARCHITECT & NETWORK ENGINEER</p>
+
+                        <div className="bg-slate-900/50 p-4 rounded border border-gray-700">
+                            <p className="italic text-gray-400 mb-2">"Building digital fortresses and interactive experiences."</p>
+                            <p className="text-xs text-cyber-muted">Built with AI & Patience.</p>
+                        </div>
+
+                        <div className="space-y-2 mt-4">
+                            <h3 className="font-bold text-gray-300">CONTACT INFO:</h3>
+                            <div className="flex items-center gap-2">
+                                <Mail size={14} className="text-cyber-primary" />
+                                <a href="mailto:lautaromir2@gmail.com" className="hover:text-cyber-primary transition-colors">lautaromir2@gmail.com</a>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Github size={14} className="text-cyber-primary" />
+                                <a href="https://github.com/Zarc1799" target="_blank" rel="noopener noreferrer" className="hover:text-cyber-primary transition-colors">github.com/Zarc1799</a>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Linkedin size={14} className="text-cyber-primary" />
+                                <a href="https://linkedin.com/in/lautaromir" target="_blank" rel="noopener noreferrer" className="hover:text-cyber-primary transition-colors">linkedin.com/in/lautaromir</a>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Phone size={14} className="text-cyber-primary" />
+                                <span>+34 627 623 807</span>
+                            </div>
+                        </div>
                     </div>
                 )
             });
 
+            // Replaced Projects_V4 with Technical Arsenal
             registerApp({
-                id: "projects",
-                title: "Projects_V4",
-                icon: Folder,
+                id: "arsenal",
+                title: "Arsenal_Specs",
+                icon: Globe,
                 component: (
-                    <div className="grid grid-cols-3 gap-4">
-                        {["Portfolio_GodMode", "Neural_Net_V2", "Crypto_Bot", "Legacy_Systems"].map(p => (
-                            <div key={p} className="flex flex-col items-center gap-2 p-2 hover:bg-slate-800 rounded cursor-pointer">
-                                <Folder size={32} className="text-yellow-500" />
-                                <span className="text-xs text-center">{p}</span>
+                    <div className="grid grid-cols-2 gap-4 p-2 text-xs">
+                        {["OpenLDAP Config", "Zabbix Monitor", "Mikrotik Scripts", "Docker Swarm", "K8s Manifests", "Python Exploits"].map(item => (
+                            <div key={item} className="flex items-center gap-2 p-3 bg-slate-800 rounded border border-slate-700 hover:border-cyber-primary transition-colors cursor-pointer">
+                                <FileText size={16} className="text-blue-400" />
+                                <span>{item}</span>
                             </div>
                         ))}
                     </div>
@@ -52,16 +150,7 @@ export default function DesktopEnvironment() {
                 id: "terminal",
                 title: "System_Terminal",
                 icon: Terminal,
-                component: (
-                    <div className="font-mono text-xs text-green-500">
-                        <p>root@lautaro-os:~# systemctl status portfolio</p>
-                        <p>● portfolio.service - The Ultimate Portfolio</p>
-                        <p>   Loaded: loaded (/etc/systemd/system/portfolio.service; enabled)</p>
-                        <p>   Active: active (running) since Thu 2026-02-06 14:00:00 UTC</p>
-                        <br />
-                        <p className="animate-pulse">_</p>
-                    </div>
-                )
+                component: <InteractiveTerminal />
             });
 
             registerApp({
@@ -99,9 +188,9 @@ export default function DesktopEnvironment() {
         return (
             <button
                 onClick={toggleWebOS}
-                className="fixed top-24 right-4 z-40 bg-slate-950/80 border border-cyber-primary/30 text-cyber-primary p-2 rounded-lg hover:bg-cyber-primary/20 hover:border-cyber-primary transition-all flex items-center gap-2 backdrop-blur-md"
+                className="fixed top-24 right-4 z-40 bg-slate-950/80 border border-cyber-primary/30 text-cyber-primary p-2 rounded-lg hover:bg-cyber-primary/20 hover:border-cyber-primary transition-all flex items-center gap-2 backdrop-blur-md shadow-lg group"
             >
-                <Monitor size={18} />
+                <Monitor size={18} className="group-hover:animate-pulse" />
                 <span className="text-xs font-mono hidden md:inline">DESKTOP_MODE</span>
             </button>
         );
@@ -112,7 +201,7 @@ export default function DesktopEnvironment() {
             <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
 
             {/* Desktop Area */}
-            <div className="absolute inset-0 p-8 flex flex-col flex-wrap content-start gap-4" ref={constraintsRef}>
+            <div className="absolute inset-0 p-8 flex flex-col flex-wrap content-start gap-6" ref={constraintsRef}>
                 {/* Desktop Icons */}
                 {windows.map(app => (
                     <button
@@ -123,7 +212,7 @@ export default function DesktopEnvironment() {
                         <div className="p-3 bg-cyber-primary/20 rounded-xl group-hover:bg-cyber-primary/40 transition-colors ring-1 ring-cyber-primary/50 shadow-[0_0_15px_rgba(6,182,212,0.3)]">
                             <app.icon size={32} className="text-cyber-primary" />
                         </div>
-                        <span className="text-xs font-medium text-shadow-sm bg-black/50 px-2 rounded">{app.title}</span>
+                        <span className="text-xs font-medium text-shadow-sm bg-black/50 px-2 rounded mt-1">{app.title}</span>
                     </button>
                 ))}
 
@@ -139,7 +228,7 @@ export default function DesktopEnvironment() {
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.8, opacity: 0 }}
                             className="absolute top-20 left-1/4 w-[600px] h-[400px] bg-slate-950/90 border border-cyber-primary/30 rounded-lg shadow-2xl flex flex-col backdrop-blur-xl overflow-hidden"
-                            style={{ zIndex: 50 }} // Simple z-index, could be state managed
+                            style={{ zIndex: 50 }}
                         >
                             {/* Window Bar */}
                             <div className="bg-slate-900 border-b border-cyber-primary/20 p-2 flex justify-between items-center cursor-move" onPointerDown={(e) => e.preventDefault()}>
@@ -183,8 +272,9 @@ export default function DesktopEnvironment() {
                     </button>
                 ))}
 
-                <div className="ml-auto text-xs font-mono text-cyber-primary">
-                    {new Date().toLocaleTimeString()}
+                <div className="ml-auto text-xs font-mono text-cyber-primary flex items-center gap-4">
+                    <span className="opacity-50">USER: ROOT</span>
+                    <span>{new Date().toLocaleTimeString()}</span>
                 </div>
             </div>
         </div>

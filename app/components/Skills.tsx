@@ -45,8 +45,8 @@ export default function Skills() {
                     </h2>
                 </motion.div>
 
-                {/* Trigger Achievement when seen */}
-                <motion.div onViewportEnter={() => unlock("explorer")} viewport={{ once: true }} />
+                {/* Achievement Removed - Globe Deprecated */}
+                {/* <motion.div onViewportEnter={() => unlock("explorer")} viewport={{ once: true }} /> */}
 
                 {/* Skill Cards Grid (Full Width) */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
