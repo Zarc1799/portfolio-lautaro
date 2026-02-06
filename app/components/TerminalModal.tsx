@@ -216,17 +216,17 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
                 setHistory(prev => [...prev, "System is going down for halt NOW!", ""]);
                 setTimeout(() => {
                     document.body.innerHTML = `
-    < div style = "height:100vh;background:black;color:#ef4444;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:2rem;font-weight:bold;position:relative;flex-direction:column;gap:20px;" >
-                            <div style="text-shadow: 0 0 10px #ef4444;">SYSTEM HALTED</div>
-                            <div style="font-size: 1rem; color: #666;">It is now safe to turn off your computer.</div>
-                            <button onclick="window.location.reload()" style="position:absolute;top:30px;right:30px;background:none;border:2px solid #06b6d4;border-radius:50%;width:60px;height:60px;color:#06b6d4;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;box-shadow: 0 0 15px rgba(6,182,212,0.5);">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
-                                    <line x1="12" y1="2" x2="12" y2="12"></line>
-                                </svg>
-                            </button>
-                        </div >
-    `;
+                    <div style="height:100vh;background:black;color:#ef4444;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:2rem;font-weight:bold;position:relative;flex-direction:column;gap:20px;">
+                        <div style="text-shadow: 0 0 10px #ef4444;">SYSTEM HALTED</div>
+                        <div style="font-size: 1rem; color: #666;">It is now safe to turn off your computer.</div>
+                        <button onclick="window.location.reload()" style="margin-top:20px;background:none;border:2px solid #ef4444;border-radius:50%;width:60px;height:60px;color:#ef4444;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;box-shadow: 0 0 15px rgba(239,68,68,0.3);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                                <line x1="12" y1="2" x2="12" y2="12"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    `;
                 }, 1500);
                 return;
             case "":
