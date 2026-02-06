@@ -22,15 +22,6 @@ export const translations = {
         },
         personalInfo: {
             summary: "Network Systems Administrator & Systems Architect specialized in AI Automation and Custom Agents (n8n). Strong foundation in cybersecurity, Active Directory, and SQL Server. Expert in designing high-availability networks and implementing autonomously intelligent solutions for business efficiency.",
-            location: "Barcelona, Spain",
-            contact: "Contact for info",
-            linkedin: "LinkedIn Profile",
-            json: {
-                status: "Active",
-                role: "Cybersecurity & Network Systems Expert",
-                clearance: "Level 1",
-                languages: ["Spanish (Native)", "Catalan (Native)", "English (B1)"],
-            },
         },
         about: {
             title: "About Me",
@@ -44,13 +35,7 @@ export const translations = {
                 languages: ["Spanish (Native)", "Catalan (Native)", "English (B1)"],
             },
         },
-        systemStatus: {
-            title: "SYSTEM STATUS",
-            cpu: "CPU LOAD",
-            ram: "RAM USAGE",
-            net: "NET I/O",
-            uptime: "UPTIME"
-        },
+
         skills: {
             title: "Technical Arsenal",
             categories: {
@@ -209,9 +194,6 @@ export const translations = {
         },
         personalInfo: {
             summary: "Administrador de Sistemas de Red y Arquitecto de Sistemas especializado en Automatización con IA y Agentes Personalizados (n8n). Sólida base en ciberseguridad, Active Directory y SQL Server. Experto en el diseño de redes de alta disponibilidad e implementación de soluciones autónomas inteligentes para la eficiencia empresarial.",
-            email: "lautaromir2@gmail.com",
-            phone: "+34 627 623 807",
-            linkedin: "https://linkedin.com/in/lautaro-mir"
         },
         about: {
             title: "Sobre Mí",
@@ -389,9 +371,6 @@ export const translations = {
         },
         personalInfo: {
             summary: "Administrador de Sistemes de Xarxa i Arquitecte de Sistemes especialitzat en Automatització amb IA i Agents Personalitzats (n8n). Sòlida base en ciberseguretat, Active Directory i SQL Server. Expert en el disseny de xarxes d'alta disponibilitat i implementació de solucions autònomes intel·ligents per a l'eficiència empresarial.",
-            email: "lautaromir2@gmail.com",
-            phone: "+34 627 623 807",
-            linkedin: "https://linkedin.com/in/lautaro-mir"
         },
         about: {
             title: "Sobre Mi",
@@ -576,9 +555,6 @@ export const translations = {
         },
         personalInfo: {
             summary: "网络系统管理员和系统架构师，专精于AI自动化和自定义代理（n8n）。在网络安全、Active Directory和SQL Server方面拥有坚实基础。专家级设计高可用性网络并实施自主智能解决方案以提高业务效率。",
-            email: "lautaromir2@gmail.com",
-            phone: "+34 627 623 807",
-            linkedin: "https://linkedin.com/in/lautaro-mir"
         },
         about: {
             title: "关于我",
@@ -592,13 +568,7 @@ export const translations = {
                 languages: ["西班牙语 (母语)", "加泰罗尼亚语 (母语)", "英语 (B1)"],
             },
         },
-        systemStatus: {
-            title: "系统状态",
-            cpu: "CPU 负载",
-            ram: "内存使用",
-            net: "网络 I/O",
-            uptime: "运行时间"
-        },
+
         skills: {
             title: "技术军火库",
             categories: {

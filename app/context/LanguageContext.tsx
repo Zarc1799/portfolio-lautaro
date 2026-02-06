@@ -22,9 +22,9 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
     const t = translations[language];
 
-    if (!mounted) {
-        return null; // or a loading spinner to prevent hydration mismatch
-    }
+    // Removed mounted check to enable SSR for SEO
+    // Hydration mismatch shouldn't occur as default is 'en' on both server and client
+
 
     return (
         <LanguageContext.Provider value={{ language, setLanguage, t }}>

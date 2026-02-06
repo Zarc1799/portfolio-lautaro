@@ -1,5 +1,8 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { Terminal, Wifi, Send, ShieldCheck, ChevronRight } from "lucide-react";
+import { Terminal, ChevronRight, Send, ShieldCheck, Wifi } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Typewriter } from "./Typewriter";
 import { useLanguage } from "../context/LanguageContext";
 import { useSound } from "../hooks/useSound";
@@ -7,16 +10,15 @@ import { useSound } from "../hooks/useSound";
 export default function Contact() {
     const { t } = useLanguage();
     const { play } = useSound();
-    // HARDCODED DATA TO PREVENT CRASHES
     const email = "lautaromir2@gmail.com";
     const phone = "+34 627 623 807";
 
     const logs = [
         "Initializing secure handshake...",
-        "Resolving host: lautaromir.dev...",
-        "Exchange keys: ECDH-SHA256 [ESTABLISHED]",
-        "Tunnel status: ACTIVE (128-bit AES)",
-        "Awaiting user payload..."
+        "Resolving host: lautaromir.com...",
+        "Connection established.",
+        "Awaiting input...",
+        "STATUS: ACTIVE"
     ];
 
     return (
