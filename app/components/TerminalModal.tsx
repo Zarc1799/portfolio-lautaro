@@ -86,6 +86,9 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
                                 "> Systems Architect | OpenLDAP | Zabbix Expert",
                                 "",
                                 "Type 'help' for available commands.",
+                                "",
+                                "⚠ SYSTEM WARNING: Unpatched vulnerability detected in kernel.",
+                                "Hint: Privileged access might be possible...",
                                 ""
                             ]);
                             setIsBooting(false);
@@ -137,6 +140,8 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
                 }
                 break;
             case "tor_connect":
+            case "darkweb": // Alias for ease of use
+            case "tor":
                 play("boot");
                 setHistory(prev => [...prev, `${terminalConfig.user} @${terminalConfig.host}:${currentDir}$ ${cmd} `, "Connecting to TOR network...", "Establishing secure tunnel..."]);
                 setTimeout(() => {

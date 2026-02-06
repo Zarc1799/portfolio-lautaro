@@ -19,8 +19,9 @@ export default function DesktopEnvironment() {
                 icon: FileText,
                 component: (
                     <div className="font-mono text-sm space-y-4">
-                        <p># LAUTARO MIR - FULL STACK DEVELOPER</p>
+                        <p># LAUTARO MIR - SYSTEMS ARCHITECT</p>
                         <p>Mission: Building digital fortresses and interactive experiences.</p>
+                        <p className="text-xs text-cyber-muted italic mt-2">Built with AI & Patience.</p>
                         <br />
                         <p>CONTACT:</p>
                         <ul className="list-disc pl-4">
@@ -59,6 +60,24 @@ export default function DesktopEnvironment() {
                         <p>   Active: active (running) since Thu 2026-02-06 14:00:00 UTC</p>
                         <br />
                         <p className="animate-pulse">_</p>
+                    </div>
+                )
+            });
+
+            registerApp({
+                id: "secrets",
+                title: "Top_Secret.enc",
+                icon: FileText,
+                component: (
+                    <div className="font-mono text-xs text-red-400 space-y-2">
+                        <p>ENCRYPTED FILE - AES-256</p>
+                        <p>-------------------------</p>
+                        <p className="break-all blur-[2px] select-none">
+                            U2FsdGVkX1+q8X5q8X5q8X5q8X5q8X5q8X5q8X5q8X5q8X5q8X5q8X5q8X5q8X5q
+                            8X5q8X5q8X5q8X5q8X5q8X5q8X5q8X5q8X5q8X5q8X5q8X5q8X5q8X5q8X5q8X5q
+                        </p>
+                        <p>-------------------------</p>
+                        <p>ACCESS DENIED: MISSING PRIVATE KEY</p>
                     </div>
                 )
             });
