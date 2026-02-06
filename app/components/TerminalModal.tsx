@@ -55,6 +55,8 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
     const inputRef = useRef<HTMLInputElement>(null);
     const hasBooted = useRef(false);
 
+    const [isRoot, setIsRoot] = useState(false);
+
     // Boot Sequence Effect
     useEffect(() => {
         if (isOpen && !hasBooted.current) {
@@ -105,10 +107,27 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
 
         switch (command) {
             case "help":
-                output = t.terminal.outputs.help;
+                output = [
+                    ...t.terminal.outputs.help,
+                    isRoot ? "ROOT COMMANDS: [decode] [trace] [nuke]" : ""
+                ].filter(Boolean);
                 break;
             case "whoami":
-                output = t.terminal.outputs.whoami;
+                output = isRoot ? "root (GOD MODE ACTIVE)" : t.terminal.outputs.whoami;
+                break;
+            case "hack":
+                if (isRoot) {
+                    output = "Already root. You own this system.";
+                } else {
+                    play("boot"); // Use boot sound for "processing"
+                    setHistory(prev => [...prev, `${terminalConfig.user}@${terminalConfig.host}:${currentDir}$ ${cmd}`, "Initiating exploit...", "Bypassing firewall...", "Escalating privileges..."]);
+                    setTimeout(() => {
+                        play("success");
+                        setIsRoot(true);
+                        setHistory(prev => [...prev, "ACCESS GRANTED. WELCOME, ADMINISTRATOR.", "", "Secret Contact Unlocked: +34 627 623 807 (Priority Line)"]);
+                    }, 2000);
+                    return; // Return early to handle async history update
+                }
                 break;
             case "skills":
                 output = t.terminal.outputs.skills;
@@ -123,7 +142,8 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
                 const dir = fileSystem["~"];
                 const files = Object.keys(dir.files).join("  ");
                 const dirs = dir.dirs ? Object.keys(dir.dirs).map((d: string) => d + "/").join("  ") : "";
-                output = `${dirs}  ${files}`.trim();
+                const secretFiles = isRoot ? " shadow_config.yml  director_contact.vcf" : "";
+                output = `${dirs}  ${files}${secretFiles}`.trim();
                 break;
             case "cd":
                 if (!args[0] || args[0] === "~") {
@@ -144,6 +164,10 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
                         output = currentDirObj.files[args[0]];
                     } else if (currentDirObj.dirs && currentDirObj.dirs[args[0]]) {
                         output = `cat: ${args[0]}: Is a directory`;
+                    } else if (args[0] === "director_contact.vcf" && isRoot) {
+                        output = "Name: Lautaro Mir\nRole: Director\nPhone: +34 627 623 807\nEmail: lautaromir2@gmail.com\nPriority: HIGH";
+                    } else if (args[0] === "shadow_config.yml" && isRoot) {
+                        output = "encryption: AES-256\nmaster_key: ******************\nbackdoor_port: 1337";
                     } else {
                         play("error");
                         output = `cat: ${args[0]}: No such file or directory`;
@@ -185,7 +209,10 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
                 output = `${language === 'en' ? 'Command not found' : language === 'es' ? 'Comando no encontrado' : 'Comando no trobat'}: ${command}`;
         }
 
-        const newHistory = [...history, `${terminalConfig.user}@${terminalConfig.host}:${currentDir}$ ${cmd}`];
+        const promptUser = isRoot ? "root" : terminalConfig.user;
+        const promptSymbol = isRoot ? "#" : "$";
+
+        const newHistory = [...history, `${promptUser}@${terminalConfig.host}:${currentDir}${promptSymbol} ${cmd}`];
         if (Array.isArray(output)) {
             newHistory.push(...output);
         } else if (output) {
@@ -248,7 +275,9 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
                         ))}
                         {!isBooting && (
                             <div className="flex items-center gap-2 mt-2 text-green-400 font-bold">
-                                <span>{terminalConfig.user}@{terminalConfig.host}:{currentDir}$</span>
+                                <span>
+                                    {isRoot ? <span className="text-red-500">root@{terminalConfig.host}:{currentDir}#</span> : <span>{terminalConfig.user}@{terminalConfig.host}:{currentDir}$</span>}
+                                </span>
                                 <input
                                     ref={inputRef}
                                     type="text"

@@ -3,6 +3,8 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import EasterEggs from "./components/EasterEggs";
 import SystemStatus from "./components/SystemStatus";
+import { StealthProvider } from "./context/StealthContext";
+import StealthLayer from "./components/StealthLayer";
 import { LanguageProvider } from "./context/LanguageContext";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -54,10 +56,13 @@ export default function RootLayout({
                 className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
             >
                 <LanguageProvider>
-                    <CyberRain />
-                    <EasterEggs />
-                    <SystemStatus />
-                    {children}
+                    <StealthProvider>
+                        <StealthLayer />
+                        <CyberRain />
+                        <EasterEggs />
+                        <SystemStatus />
+                        {children}
+                    </StealthProvider>
                 </LanguageProvider>
             </body>
         </html>
