@@ -1,26 +1,36 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { resume } from "../data/resume";
 import { Briefcase, GraduationCap, Calendar } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Experience() {
+    const { t } = useLanguage();
+
     return (
         <section id="experience" className="py-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 className="text-3xl font-bold mb-12 flex items-center gap-3">
-                    <span className="text-cyber-primary">03.</span>
-                    Operations Log
-                </h2>
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="mb-12"
+                >
+                    <h2 className="text-3xl font-bold mb-4 flex items-center gap-3">
+                        <span className="text-cyber-primary">03.</span>
+                        {t.experience.title}
+                    </h2>
+                    <div className="h-1 w-20 bg-cyber-primary rounded-full" />
+                </motion.div>
 
                 <div className="space-y-12">
                     {/* Education */}
                     <div>
                         <h3 className="text-xl font-mono text-cyber-secondary mb-6 flex items-center gap-2">
-                            <GraduationCap /> Education
+                            <GraduationCap /> {t.experience.educationTitle}
                         </h3>
                         <div className="space-y-8 pl-4 border-l-2 border-cyber-primary/20">
-                            {resume.education.map((edu, index) => (
+                            {t.experience.education.map((edu, index) => (
                                 <motion.div
                                     key={index}
                                     initial={{ opacity: 0, x: -20 }}
@@ -52,10 +62,10 @@ export default function Experience() {
                     {/* Experience */}
                     <div>
                         <h3 className="text-xl font-mono text-cyber-secondary mb-6 flex items-center gap-2">
-                            <Briefcase /> Work History
+                            <Briefcase /> {t.experience.workTitle}
                         </h3>
                         <div className="space-y-8 pl-4 border-l-2 border-cyber-primary/20">
-                            {resume.experience.map((job, index) => (
+                            {t.experience.work.map((job, index) => (
                                 <motion.div
                                     key={index}
                                     initial={{ opacity: 0, x: -20 }}

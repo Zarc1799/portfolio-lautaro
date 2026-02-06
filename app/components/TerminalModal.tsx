@@ -1,0 +1,270 @@
+import { useState, useEffect, useRef } from "react";
+import { X, Minus, Square, Terminal as TerminalIcon } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "../context/LanguageContext";
+import { useSound } from "../hooks/useSound";
+
+interface TerminalModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+}
+
+export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
+    const { t, language } = useLanguage();
+    const { play } = useSound();
+    const [input, setInput] = useState("");
+    const [currentDir, setCurrentDir] = useState("~");
+    const [isBooting, setIsBooting] = useState(false);
+
+    // Config & Data
+    const terminalConfig = {
+        user: "guest",
+        host: "lautaro-node",
+        bootSequence: [
+            { text: '> Initializing kernel...', delay: 600 },
+            { text: '> Loading modules... [OK]', delay: 500 },
+            { text: '> Mounting filesystems... [OK]', delay: 400 },
+            { text: '> Starting network services... [OK]', delay: 300 },
+            { text: '> System ready.', delay: 400 },
+            { text: '', delay: 100 },
+            { text: '$ neofetch --name', delay: 200 }
+        ],
+        asciiArt: [
+            "    __               __                  __  ____     ",
+            "   / /   ____ __  __/ /_____ __________ /  |/  (_)____",
+            "  / /   / __ `/ / / / __/ __ `/ ___/ __ \\ /|_/ / / ___/",
+            " / /___/ /_/ / /_/ / /_/ /_/ / /  / /_/ / /  / / /    ",
+            "/_____/\\__,_/\\__,_/\\__/\\__,_/_/   \\____/_/  /_/_/_/   "
+        ]
+    };
+
+    // Virtual File System
+    const fileSystem: Record<string, any> = {
+        "~": {
+            files: {
+                "about.txt": "Lautaro Mir. Systems Architect. Expert in OpenLDAP, Zabbix, and High Availability Networks.",
+                "skills.json": `["OpenLDAP", "Zabbix", "Mikrotik", "Linux", "Docker", "Cybersecurity", "Blockchain"]`,
+                "contact.sh": "Executing mail client... (Use the contact form)",
+            },
+            dirs: {}
+        }
+    };
+
+    const [history, setHistory] = useState<string[]>([]);
+    const bottomRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
+    const hasBooted = useRef(false);
+
+    // Boot Sequence Effect
+    useEffect(() => {
+        if (isOpen && !hasBooted.current) {
+            setIsBooting(true);
+            setHistory([]);
+            let delaySum = 0;
+
+            terminalConfig.bootSequence.forEach((step, index) => {
+                delaySum += step.delay;
+                setTimeout(() => {
+                    play("typing");
+                    setHistory(prev => [...prev, step.text]);
+                    if (index === terminalConfig.bootSequence.length - 1) {
+                        // After boot, show ASCII art and welcome
+                        setTimeout(() => {
+                            play("success");
+                            setHistory(prev => [
+                                ...prev,
+                                ...terminalConfig.asciiArt,
+                                "Lautaro Mir",
+                                "> Systems Architect | OpenLDAP | Zabbix Expert",
+                                "",
+                                "Type 'help' for available commands.",
+                                ""
+                            ]);
+                            setIsBooting(false);
+                            hasBooted.current = true;
+                        }, 500);
+                    }
+                }, delaySum);
+            });
+        }
+    }, [isOpen]);
+
+    // Auto-scroll effect
+    useEffect(() => {
+        if (isOpen && bottomRef.current) {
+            bottomRef.current.scrollIntoView({ behavior: "smooth" });
+            if (!isBooting) inputRef.current?.focus();
+        }
+    }, [isOpen, history, isBooting]);
+
+    const handleCommand = (cmd: string) => {
+        const parts = cmd.trim().split(" ");
+        const command = parts[0].toLowerCase();
+        const args = parts.slice(1);
+        let output: string | string[] = "";
+
+        switch (command) {
+            case "help":
+                output = t.terminal.outputs.help;
+                break;
+            case "whoami":
+                output = t.terminal.outputs.whoami;
+                break;
+            case "skills":
+                output = t.terminal.outputs.skills;
+                break;
+            case "blockchain":
+                output = t.terminal.outputs.blockchain;
+                break;
+            case "status":
+                output = t.terminal.outputs.status;
+                break;
+            case "ls":
+                const dir = fileSystem["~"];
+                const files = Object.keys(dir.files).join("  ");
+                const dirs = dir.dirs ? Object.keys(dir.dirs).map((d: string) => d + "/").join("  ") : "";
+                output = `${dirs}  ${files}`.trim();
+                break;
+            case "cd":
+                if (!args[0] || args[0] === "~") {
+                    setCurrentDir("~");
+                } else if (args[0] === ".." && currentDir !== "~") {
+                    setCurrentDir("~");
+                } else {
+                    play("error");
+                    output = `bash: cd: ${args[0]}: ${language === 'en' ? 'No such file or directory' : 'No existe el fichero o directorio'}`;
+                }
+                break;
+            case "cat":
+                if (!args[0]) {
+                    output = "Usage: cat [filename]";
+                } else {
+                    const currentDirObj = fileSystem["~"];
+                    if (currentDirObj.files[args[0]]) {
+                        output = currentDirObj.files[args[0]];
+                    } else if (currentDirObj.dirs && currentDirObj.dirs[args[0]]) {
+                        output = `cat: ${args[0]}: Is a directory`;
+                    } else {
+                        play("error");
+                        output = `cat: ${args[0]}: No such file or directory`;
+                    }
+                }
+                break;
+            case "date":
+                output = new Date().toString();
+                break;
+            case "clear":
+                setHistory([]);
+                return;
+            case "exit":
+                onClose();
+                return;
+            case "poweroff":
+            case "shutdown":
+                play("error"); // Or a specific shutdown sound
+                setHistory(prev => [...prev, "System is going down for halt NOW!", ""]);
+                setTimeout(() => {
+                    document.body.innerHTML = `
+                        <div style="height:100vh;background:black;color:#ef4444;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:2rem;font-weight:bold;position:relative;flex-direction:column;gap:20px;">
+                            <div style="text-shadow: 0 0 10px #ef4444;">SYSTEM HALTED</div>
+                            <div style="font-size: 1rem; color: #666;">It is now safe to turn off your computer.</div>
+                            <button onclick="window.location.reload()" style="position:absolute;top:30px;right:30px;background:none;border:2px solid #06b6d4;border-radius:50%;width:60px;height:60px;color:#06b6d4;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;box-shadow: 0 0 15px rgba(6,182,212,0.5);">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                                    <line x1="12" y1="2" x2="12" y2="12"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    `;
+                }, 1500);
+                return;
+            case "":
+                break;
+            default:
+                play("error");
+                output = `${language === 'en' ? 'Command not found' : language === 'es' ? 'Comando no encontrado' : 'Comando no trobat'}: ${command}`;
+        }
+
+        const newHistory = [...history, `${terminalConfig.user}@${terminalConfig.host}:${currentDir}$ ${cmd}`];
+        if (Array.isArray(output)) {
+            newHistory.push(...output);
+        } else if (output) {
+            newHistory.push(output);
+        }
+        setHistory(newHistory);
+        setInput("");
+
+        // Play success sound for valid commands that don't have explicit error sound
+        if (command && command !== "cd" && command !== "cat" && command !== "poweroff" && command !== "shutdown" && command !== "default") {
+            play("typing"); // Using typing as a generic 'proicessed' sound, or could be success
+        }
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (!isBooting) {
+            if (e.key === "Enter") {
+                play("click");
+                handleCommand(input);
+            } else {
+                play("typing");
+            }
+        }
+    };
+
+    if (!isOpen) return null;
+
+    return (
+        <AnimatePresence>
+            <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+                onClick={onClose}
+            >
+                <div
+                    className="w-full max-w-3xl bg-[#0c0c0c] rounded-lg border border-gray-700 shadow-2xl overflow-hidden font-mono text-sm sm:text-base text-gray-300"
+                    onClick={e => e.stopPropagation()}
+                >
+                    {/* Header */}
+                    <div className="bg-[#1f1f1f] px-4 py-2 flex items-center justify-between handle cursor-move">
+                        <div className="flex items-center gap-2 text-gray-400">
+                            <TerminalIcon size={16} />
+                            <span>{terminalConfig.user}@{terminalConfig.host}: ~</span>
+                        </div>
+                        <div className="flex gap-2">
+                            <div className="p-1 hover:bg-white/10 rounded cursor-pointer"><Minus size={14} /></div>
+                            <div className="p-1 hover:bg-white/10 rounded cursor-pointer"><Square size={14} /></div>
+                            <div className="p-1 hover:bg-red-500/80 rounded cursor-pointer" onClick={() => { play("click"); onClose(); }}><X size={14} /></div>
+                        </div>
+                    </div>
+
+                    {/* Terminal Window */}
+                    <div className="p-4 h-[60vh] overflow-y-auto custom-scrollbar" onClick={() => !isBooting && inputRef.current?.focus()}>
+                        {history.map((line, i) => (
+                            <div key={i} className={`mb-1 ${line.startsWith(terminalConfig.user + "@") ? "text-green-400 font-bold" : "text-gray-300 ml-0"} whitespace-pre-wrap`}>
+                                {line}
+                            </div>
+                        ))}
+                        {!isBooting && (
+                            <div className="flex items-center gap-2 mt-2 text-green-400 font-bold">
+                                <span>{terminalConfig.user}@{terminalConfig.host}:{currentDir}$</span>
+                                <input
+                                    ref={inputRef}
+                                    type="text"
+                                    value={input}
+                                    onChange={(e) => setInput(e.target.value)}
+                                    onKeyDown={handleKeyDown}
+                                    className="bg-transparent border-none outline-none flex-1 text-gray-100 placeholder-transparent"
+                                    autoFocus
+                                    autoComplete="off"
+                                />
+                            </div>
+                        )}
+                        <div ref={bottomRef} />
+                    </div>
+                </div>
+            </motion.div>
+        </AnimatePresence>
+    );
+}

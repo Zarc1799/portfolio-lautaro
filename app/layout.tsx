@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import EasterEggs from "./components/EasterEggs";
+import SystemStatus from "./components/SystemStatus";
+import { LanguageProvider } from "./context/LanguageContext";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetbrainsMono = JetBrains_Mono({
@@ -36,6 +39,10 @@ export const metadata: Metadata = {
     ],
 };
 
+import CyberRain from "./components/CyberRain";
+
+// ... existing imports
+
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -46,7 +53,12 @@ export default function RootLayout({
             <body
                 className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
             >
-                {children}
+                <LanguageProvider>
+                    <CyberRain />
+                    <EasterEggs />
+                    <SystemStatus />
+                    {children}
+                </LanguageProvider>
             </body>
         </html>
     );

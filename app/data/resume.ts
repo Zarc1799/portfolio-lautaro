@@ -4,14 +4,15 @@ export const resume = {
         title: "Cybersecurity & Network Systems Expert",
         location: "Barcelona, Spain",
         email: "lautaromir2@gmail.com",
+        phone: "+34 627 623 807",
         linkedin: "https://www.linkedin.com/in/lautaro-enrique-mir-9390b0309",
         summary:
-            "Proactive and passionate Network Systems Administrator with a strong foundation in networks, systems, and a marked interest in cybersecurity. Certified Mikrotik MTCN. Actively seeking opportunities to apply knowledge in network configuration, system administration, and infrastructure protection.",
+            "Network Systems Administrator & Systems Architect specialized in AI Automation and Custom Agents (n8n). Strong foundation in cybersecurity, Active Directory, and SQL Server. Expert in designing high-availability networks and implementing autonomously intelligent solutions for business efficiency.",
     },
     skills: {
         networking: [
             "Cisco & Mikrotik Routing/Switching",
-            "TCP/IP, DNS, DHCP",
+            "Active Directory & DNS/DHCP",
             "VLAN Segmentation",
             "Network Monitoring",
         ],
@@ -24,12 +25,17 @@ export const resume = {
         ],
         infrastructure: [
             "Linux Server Admin",
-            "Windows Server Admin",
+            "Windows Server & SQL Server",
             "Virtualization (VMware, VirtualBox)",
             "Cloud Computing",
             "NAS Storage Implementation",
         ],
-        development: ["SQL / MySQL", "Python (Basic)", "Bash Scripting"],
+        development: [
+            "AI Agents & Automation (n8n)",
+            "Python (Intermed)",
+            "SQL / MySQL",
+            "Blockchain & Tokenization"
+        ],
     },
     projects: [
         {
