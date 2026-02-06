@@ -54,6 +54,9 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
     };
 
     const [history, setHistory] = useState<string[]>([]);
+    const [commandHistory, setCommandHistory] = useState<string[]>([]);
+    const [historyIndex, setHistoryIndex] = useState(-1);
+
     const bottomRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const hasBooted = useRef(false);
@@ -109,6 +112,12 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
     }, [isOpen, history, isBooting]);
 
     const handleCommand = (cmd: string) => {
+        // Add to history if not empty
+        if (cmd.trim()) {
+            setCommandHistory(prev => [...prev, cmd]);
+            setHistoryIndex(-1); // Reset index
+        }
+
         const parts = cmd.trim().split(" ");
         const command = parts[0].toLowerCase();
         const args = parts.slice(1);
@@ -206,6 +215,7 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
                 break;
             case "clear":
                 setHistory([]);
+                setInput(""); // Clears the input so it doesn't get stuck
                 return;
             case "exit":
                 onClose();
@@ -259,6 +269,27 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
             if (e.key === "Enter") {
                 play("click");
                 handleCommand(input);
+            } else if (e.key === "ArrowUp") {
+                e.preventDefault();
+                if (commandHistory.length > 0) {
+                    // Start from end or go back one
+                    const newIndex = historyIndex === -1 ? commandHistory.length - 1 : Math.max(0, historyIndex - 1);
+                    setHistoryIndex(newIndex);
+                    setInput(commandHistory[newIndex]);
+                }
+            } else if (e.key === "ArrowDown") {
+                e.preventDefault();
+                if (historyIndex !== -1) {
+                    const newIndex = Math.min(commandHistory.length - 1, historyIndex + 1);
+                    // If we go past the last item, clear input
+                    if (historyIndex === commandHistory.length - 1) {
+                        setHistoryIndex(-1);
+                        setInput("");
+                    } else {
+                        setHistoryIndex(newIndex);
+                        setInput(commandHistory[newIndex]);
+                    }
+                }
             } else {
                 play("typing");
             }
