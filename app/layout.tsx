@@ -13,6 +13,7 @@ import { DarkWebProvider } from "./context/DarkWebContext";
 import TorFrame from "./components/TorFrame";
 import { WebOSProvider } from "./context/WebOSContext";
 import DesktopEnvironment from "./components/DesktopEnvironment";
+import CustomCursor from "./components/CustomCursor";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetbrainsMono = JetBrains_Mono({
@@ -66,6 +67,7 @@ export default function RootLayout({
                             <WebOSProvider>
                                 <StealthProvider>
                                     <ClientBiosWrapper>
+                                        <CustomCursor />
                                         <TorFrame />
                                         <DesktopEnvironment />
                                         <StealthLayer />
