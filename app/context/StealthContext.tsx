@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useSound } from "../hooks/useSound";
+import { useAchievement } from "./AchievementContext";
 
 type StealthContextType = {
     isStealth: boolean;
@@ -13,6 +14,7 @@ const StealthContext = createContext<StealthContextType | undefined>(undefined);
 export function StealthProvider({ children }: { children: React.ReactNode }) {
     const [isStealth, setIsStealth] = useState(false);
     const { play } = useSound();
+    const { unlock } = useAchievement();
 
     const toggleStealth = () => {
         setIsStealth((prev) => !prev);
@@ -20,6 +22,7 @@ export function StealthProvider({ children }: { children: React.ReactNode }) {
         if (!isStealth) {
             // Enter stealth - quiet or office noise?
             play("click");
+            unlock("spy");
         } else {
             // Exit stealth - boot sound?
             play("boot");

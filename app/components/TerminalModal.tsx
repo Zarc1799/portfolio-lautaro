@@ -2,6 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { X, Minus, Square, Terminal as TerminalIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
+import { useAchievement } from "../context/AchievementContext";
+import { useDarkWeb } from "../context/DarkWebContext";
+import { useWebOS } from "../context/WebOSContext";
 import { useSound } from "../hooks/useSound";
 
 interface TerminalModalProps {
@@ -32,7 +35,7 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
         asciiArt: [
             "    __               __                  __  ____     ",
             "   / /   ____ __  __/ /_____ __________ /  |/  (_)____",
-            "  / /   / __ `/ / / / __/ __ `/ ___/ __ \\ /|_/ / / ___/",
+            "  / /   / __ `/ / / / __ / __`/ ___/ __ \\ /|_/ / / ___/",
             " / /___/ /_/ / /_/ / /_/ /_/ / /  / /_/ / /  / / /    ",
             "/_____/\\__,_/\\__,_/\\__/\\__,_/_/   \\____/_/  /_/_/_/   "
         ]
@@ -54,6 +57,9 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
     const bottomRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const hasBooted = useRef(false);
+    const { unlock } = useAchievement();
+    const { toggleDarkWeb } = useDarkWeb();
+    const { toggleWebOS } = useWebOS();
 
     const [isRoot, setIsRoot] = useState(false);
 
@@ -120,15 +126,31 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
                     output = "Already root. You own this system.";
                 } else {
                     play("boot"); // Use boot sound for "processing"
-                    setHistory(prev => [...prev, `${terminalConfig.user}@${terminalConfig.host}:${currentDir}$ ${cmd}`, "Initiating exploit...", "Bypassing firewall...", "Escalating privileges..."]);
+                    setHistory(prev => [...prev, `${terminalConfig.user} @${terminalConfig.host}:${currentDir}$ ${cmd} `, "Initiating exploit...", "Bypassing firewall...", "Escalating privileges..."]);
                     setTimeout(() => {
                         play("success");
                         setIsRoot(true);
+                        unlock("hacker");
                         setHistory(prev => [...prev, "ACCESS GRANTED. WELCOME, ADMINISTRATOR.", "", "Secret Contact Unlocked: +34 627 623 807 (Priority Line)"]);
                     }, 2000);
                     return; // Return early to handle async history update
                 }
                 break;
+            case "darkweb":
+                play("boot");
+                setHistory(prev => [...prev, `${terminalConfig.user} @${terminalConfig.host}:${currentDir}$ ${cmd} `, "Connecting to TOR network...", "Establishing secure tunnel..."]);
+                setTimeout(() => {
+                    toggleDarkWeb();
+                    setHistory(prev => [...prev, "Connection Established.", "WARNING: You are now entering the Dark Web."]);
+                }, 1500);
+                return;
+            case "os_boot":
+                play("boot");
+                setHistory(prev => [...prev, `${terminalConfig.user} @${terminalConfig.host}:${currentDir}$ ${cmd} `, "Booting WebOS Kernel..."]);
+                setTimeout(() => {
+                    toggleWebOS();
+                }, 1000);
+                return;
             case "skills":
                 output = t.terminal.outputs.skills;
                 break;
@@ -143,7 +165,7 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
                 const files = Object.keys(dir.files).join("  ");
                 const dirs = dir.dirs ? Object.keys(dir.dirs).map((d: string) => d + "/").join("  ") : "";
                 const secretFiles = isRoot ? " shadow_config.yml  director_contact.vcf" : "";
-                output = `${dirs}  ${files}${secretFiles}`.trim();
+                output = `${dirs}  ${files}${secretFiles} `.trim();
                 break;
             case "cd":
                 if (!args[0] || args[0] === "~") {
@@ -152,7 +174,7 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
                     setCurrentDir("~");
                 } else {
                     play("error");
-                    output = `bash: cd: ${args[0]}: ${language === 'en' ? 'No such file or directory' : 'No existe el fichero o directorio'}`;
+                    output = `bash: cd: ${args[0]}: ${language === 'en' ? 'No such file or directory' : 'No existe el fichero o directorio'} `;
                 }
                 break;
             case "cat":
@@ -189,7 +211,7 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
                 setHistory(prev => [...prev, "System is going down for halt NOW!", ""]);
                 setTimeout(() => {
                     document.body.innerHTML = `
-                        <div style="height:100vh;background:black;color:#ef4444;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:2rem;font-weight:bold;position:relative;flex-direction:column;gap:20px;">
+    < div style = "height:100vh;background:black;color:#ef4444;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:2rem;font-weight:bold;position:relative;flex-direction:column;gap:20px;" >
                             <div style="text-shadow: 0 0 10px #ef4444;">SYSTEM HALTED</div>
                             <div style="font-size: 1rem; color: #666;">It is now safe to turn off your computer.</div>
                             <button onclick="window.location.reload()" style="position:absolute;top:30px;right:30px;background:none;border:2px solid #06b6d4;border-radius:50%;width:60px;height:60px;color:#06b6d4;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;box-shadow: 0 0 15px rgba(6,182,212,0.5);">
@@ -198,21 +220,21 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
                                     <line x1="12" y1="2" x2="12" y2="12"></line>
                                 </svg>
                             </button>
-                        </div>
-                    `;
+                        </div >
+    `;
                 }, 1500);
                 return;
             case "":
                 break;
             default:
                 play("error");
-                output = `${language === 'en' ? 'Command not found' : language === 'es' ? 'Comando no encontrado' : 'Comando no trobat'}: ${command}`;
+                output = `${language === 'en' ? 'Command not found' : language === 'es' ? 'Comando no encontrado' : 'Comando no trobat'}: ${command} `;
         }
 
         const promptUser = isRoot ? "root" : terminalConfig.user;
         const promptSymbol = isRoot ? "#" : "$";
 
-        const newHistory = [...history, `${promptUser}@${terminalConfig.host}:${currentDir}${promptSymbol} ${cmd}`];
+        const newHistory = [...history, `${promptUser} @${terminalConfig.host}:${currentDir}${promptSymbol} ${cmd} `];
         if (Array.isArray(output)) {
             newHistory.push(...output);
         } else if (output) {
@@ -269,7 +291,7 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
                     {/* Terminal Window */}
                     <div className="p-4 h-[60vh] overflow-y-auto custom-scrollbar" onClick={() => !isBooting && inputRef.current?.focus()}>
                         {history.map((line, i) => (
-                            <div key={i} className={`mb-1 ${line.startsWith(terminalConfig.user + "@") ? "text-green-400 font-bold" : "text-gray-300 ml-0"} whitespace-pre-wrap`}>
+                            <div key={i} className={`mb - 1 ${line.startsWith(terminalConfig.user + "@") ? "text-green-400 font-bold" : "text-gray-300 ml-0"} whitespace - pre - wrap`}>
                                 {line}
                             </div>
                         ))}

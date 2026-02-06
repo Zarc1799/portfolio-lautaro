@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
+import { useAchievement } from "../context/AchievementContext";
 
 export default function EasterEggs() {
+    const { unlock } = useAchievement();
+
     useEffect(() => {
         // 1. CONSOLE EASTER EGG
         const asciiArt = `
@@ -65,6 +68,7 @@ export default function EasterEggs() {
         };
 
         const activateKonamiMode = () => {
+            unlock("konami");
             alert("🔓 SYSTEM OVERRIDE: ROOT ACCESS GRANTED");
             document.body.style.fontFamily = "'Courier New', monospace";
             document.body.style.color = "#00ff00";
