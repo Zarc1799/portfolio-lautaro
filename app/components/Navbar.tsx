@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Terminal, Shield, Code, Cpu, Languages, Globe, Briefcase, Zap } from "lucide-react";
+import { Menu, X, Terminal, Shield, Code, Cpu, Globe } from "lucide-react";
 import clsx from "clsx";
 import DecryptedText from "./DecryptedText";
 import TerminalModal from "./TerminalModal";
 import { useLanguage } from "../context/LanguageContext";
-import { useCorporate } from "../context/CorporateContext";
 import { Language } from "../data/translations";
+import { useSound } from "../hooks/useSound";
 import { useDarkWeb } from "../context/DarkWebContext";
 
 const navItems = [
@@ -18,8 +18,6 @@ const navItems = [
     { nameKey: "opsLog", href: "#experience", icon: Cpu },
 ];
 
-import { useSound } from "../hooks/useSound";
-
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
@@ -28,7 +26,6 @@ export default function Navbar() {
     const { language, setLanguage, t } = useLanguage();
     const { play } = useSound();
     const { isDarkWeb } = useDarkWeb();
-    const { isCorporate, toggleCorporate } = useCorporate();
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -139,32 +136,10 @@ export default function Navbar() {
                                 >
                                     <Terminal size={20} />
                                 </motion.button>
-
-                                {/* Corporate Mode Toggle */}
-                                <motion.button
-                                    initial={{ opacity: 0, scale: 0 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    transition={{ delay: 0.6 }}
-                                    onClick={() => {
-                                        play("click");
-                                        toggleCorporate();
-                                    }}
-                                    onMouseEnter={() => play("hover")}
-                                    className={clsx(
-                                        "ml-4 p-2 rounded-md border transition-all shadow-md flex items-center gap-2",
-                                        isCorporate
-                                            ? "bg-white border-slate-300 text-slate-700 hover:bg-slate-100"
-                                            : "bg-slate-800 border-cyber-primary/30 text-cyber-primary hover:bg-cyber-primary/20"
-                                    )}
-                                    title={isCorporate ? "Switch to Hacker Mode" : "Switch to Corporate Mode"}
-                                >
-                                    {isCorporate ? <Zap size={18} /> : <Briefcase size={18} />}
-                                    <span className="hidden lg:inline text-xs font-bold">
-                                        {isCorporate ? "HACKER_MODE" : "HIRE_ME_MODE"}
-                                    </span>
-                                </motion.button>
                             </div>
                         </div>
+
+                        {/* Mobile Menu Button */}
                         <div className="-mr-2 flex md:hidden">
                             <button
                                 onClick={() => {
@@ -184,6 +159,7 @@ export default function Navbar() {
                     </div>
                 </div>
 
+                {/* Mobile Menu Overlay */}
                 {isOpen && (
                     <motion.div
                         initial={{ opacity: 0, height: 0 }}

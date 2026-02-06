@@ -9,10 +9,18 @@ export const translations = {
         },
         systemStatus: {
             title: "SYSTEM STATUS",
+            live: "LIVE",
             cpu: "CPU LOAD",
             ram: "RAM USAGE",
             net: "NET I/O",
-            uptime: "UPTIME"
+            uptime: "UPTIME",
+            threatLevel: "THREAT LEVEL",
+            threatLow: "LOW",
+        },
+        networkDiagram: {
+            title: "ARCHITECTURE_TOPOLOGY_V1.3",
+            dragHint: "[DRAGGABLE_NODES_ACTIVE]",
+            nodeDetails: "NODE_DETAILS"
         },
         hero: {
             role: "Enterprise Systems Architect",
@@ -136,7 +144,7 @@ export const translations = {
                 ],
                 whoami: [
                     "Lautaro Mir",
-                    "Systems Architect based in Barcelona, Spain",
+                    "Systems Architect based in Barcelona, España",
                     "Specialized in OpenLDAP, Zabbix, and High Availability Networks."
                 ],
                 skills: [
@@ -193,7 +201,7 @@ export const translations = {
             secondaryCta: "Ver Arsenal",
         },
         personalInfo: {
-            summary: "Administrador de Sistemas de Red y Arquitecto de Sistemas especializado en Automatización con IA y Agentes Personalizados (n8n). Sólida base en ciberseguridad, Active Directory y SQL Server. Experto en el diseño de redes de alta disponibilidad e implementación de soluciones autónomas inteligentes para la eficiencia empresarial.",
+            summary: "Administrador de Sistemas de Red y Arquitecte de Sistemas especializado en Automatización con IA y Agentes Personalizados (n8n). Sólida base en ciberseguridad, Active Directory y SQL Server. Experto en el diseño de redes de alta disponibilidad e implementación de soluciones autónomas inteligentes para la eficiencia empresarial.",
         },
         about: {
             title: "Sobre Mí",
@@ -209,10 +217,18 @@ export const translations = {
         },
         systemStatus: {
             title: "ESTADO DEL SISTEMA",
+            live: "EN VIVO",
             cpu: "CARGA CPU",
             ram: "USO RAM",
             net: "E/S RED",
-            uptime: "TIEMPO ACTIVO"
+            uptime: "TIEMPO ACTIVO",
+            threatLevel: "NIVEL AMENAZA",
+            threatLow: "BAJO",
+        },
+        networkDiagram: {
+            title: "TOPOLOGIA_ARQUITECTURA_V1.3",
+            dragHint: "[NODOS_ARRASTRABLES_ACTIVOS]",
+            nodeDetails: "DETALLES_NODO"
         },
         skills: {
             title: "Arsenal Técnico",
@@ -244,7 +260,7 @@ export const translations = {
             ],
             developmentList: [
                 "Agentes IA y Automatización (n8n)",
-                "Python (Intermerdio)",
+                "Python (Intermedio)",
                 "SQL / MySQL",
                 "Blockchain y Tokenización"
             ],
@@ -386,10 +402,18 @@ export const translations = {
         },
         systemStatus: {
             title: "ESTAT DEL SISTEMA",
+            live: "EN VIU",
             cpu: "CÀRREGA CPU",
             ram: "ÚS RAM",
             net: "E/S XARXA",
-            uptime: "TEMPS ACTIU"
+            uptime: "TEMPS ACTIU",
+            threatLevel: "NIVELL AMENAÇA",
+            threatLow: "BAIX",
+        },
+        networkDiagram: {
+            title: "TOPOLOGIA_ARQUITECTURA_V1.3",
+            dragHint: "[NODES_ARROSSEGABLES_ACTIUS]",
+            nodeDetails: "DETALLS_NODE"
         },
         skills: {
             title: "Arsenal Tècnic",
@@ -510,7 +534,7 @@ export const translations = {
                     "  Estratègies de digitalització d'actius del món real.",
                     "",
                     "> Smart Contracts",
-                    "  Lògica de contractes segurs per a transaccions automatitzades.",
+                    "  Lògica de contractes segurs per a transacciones automatitzades.",
                     "",
                     "> Identitat Descentralitzada",
                     "  Solucions d'identitat sobirana per a la força laboral.",
@@ -542,10 +566,18 @@ export const translations = {
         },
         systemStatus: {
             title: "系统状态",
+            live: "实时",
             cpu: "CPU 负载",
             ram: "内存使用",
             net: "网络 I/O",
-            uptime: "运行时间"
+            uptime: "运行时间",
+            threatLevel: "威胁等级",
+            threatLow: "低",
+        },
+        networkDiagram: {
+            title: "架构拓扑_V1.3",
+            dragHint: "[可拖动节点_已激活]",
+            nodeDetails: "节点详情"
         },
         hero: {
             role: "企业系统架构师",
@@ -691,7 +723,7 @@ export const translations = {
                     "  用于自动交易的安全合约逻辑。",
                     "",
                     "> 去中心化身份",
-                    "  劳动力的自主权身份解决方案。",
+                    "  劳动力自主权身份解决方案。",
                     "",
                     "> 企业 DeFi",
                     "  企业资金的流动性解决方案。"
