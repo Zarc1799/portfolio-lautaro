@@ -136,7 +136,7 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
                     return; // Return early to handle async history update
                 }
                 break;
-            case "darkweb":
+            case "tor_connect":
                 play("boot");
                 setHistory(prev => [...prev, `${terminalConfig.user} @${terminalConfig.host}:${currentDir}$ ${cmd} `, "Connecting to TOR network...", "Establishing secure tunnel..."]);
                 setTimeout(() => {

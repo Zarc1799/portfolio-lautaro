@@ -8,14 +8,11 @@ import StealthLayer from "./components/StealthLayer";
 import { LanguageProvider } from "./context/LanguageContext";
 import ClientBiosWrapper from "./components/ClientBiosWrapper";
 import SocDashboard from "./components/SocDashboard";
-import VoiceHud from "./components/VoiceHud";
 import { AchievementProvider } from "./context/AchievementContext";
 import { DarkWebProvider } from "./context/DarkWebContext";
 import TorFrame from "./components/TorFrame";
 import { WebOSProvider } from "./context/WebOSContext";
 import DesktopEnvironment from "./components/DesktopEnvironment";
-import { GhostProvider } from "./context/GhostContext";
-import GhostOverlay from "./components/GhostOverlay";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetbrainsMono = JetBrains_Mono({
@@ -68,20 +65,16 @@ export default function RootLayout({
                         <DarkWebProvider>
                             <WebOSProvider>
                                 <StealthProvider>
-                                    <GhostProvider>
-                                        <ClientBiosWrapper>
-                                            <TorFrame />
-                                            <DesktopEnvironment />
-                                            <GhostOverlay />
-                                            <StealthLayer />
-                                            <SocDashboard />
-                                            <VoiceHud />
-                                            <CyberRain />
-                                            <EasterEggs />
-                                            <SystemStatus />
-                                            {children}
-                                        </ClientBiosWrapper>
-                                    </GhostProvider>
+                                    <ClientBiosWrapper>
+                                        <TorFrame />
+                                        <DesktopEnvironment />
+                                        <StealthLayer />
+                                        <SocDashboard />
+                                        <CyberRain />
+                                        <EasterEggs />
+                                        <SystemStatus />
+                                        {children}
+                                    </ClientBiosWrapper>
                                 </StealthProvider>
                             </WebOSProvider>
                         </DarkWebProvider>

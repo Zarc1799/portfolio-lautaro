@@ -80,7 +80,7 @@ export default function DesktopEnvironment() {
         return (
             <button
                 onClick={toggleWebOS}
-                className="fixed bottom-4 left-1/2 transform -translate-x-1/2 md:translate-x-0 md:left-24 z-40 bg-slate-950/80 border border-cyber-primary/30 text-cyber-primary p-2 rounded-lg hover:bg-cyber-primary/20 hover:border-cyber-primary transition-all flex items-center gap-2 backdrop-blur-md"
+                className="fixed top-24 right-4 z-40 bg-slate-950/80 border border-cyber-primary/30 text-cyber-primary p-2 rounded-lg hover:bg-cyber-primary/20 hover:border-cyber-primary transition-all flex items-center gap-2 backdrop-blur-md"
             >
                 <Monitor size={18} />
                 <span className="text-xs font-mono hidden md:inline">DESKTOP_MODE</span>
