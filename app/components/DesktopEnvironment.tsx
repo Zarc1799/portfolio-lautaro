@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Minus, Square, Monitor, FileText, Terminal, Linkedin, Github, Mail, Phone, Globe } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
+import { resume } from "../data/resume";
 
 // Mini Terminal Component for WebOS
 const InteractiveTerminal = () => {
@@ -47,8 +48,8 @@ const InteractiveTerminal = () => {
                     newHistory.push(new Date().toString());
                     break;
                 case "contact":
-                    newHistory.push("Email: contact@lautaromir.com");
-                    newHistory.push("Phone: +34 627 623 807");
+                    newHistory.push(`Email: ${resume.personalInfo.email}`);
+                    newHistory.push(`Phone: ${resume.personalInfo.phone}`);
                     break;
                 case "":
                     break;
@@ -110,19 +111,19 @@ export default function DesktopEnvironment() {
                             <h3 className="font-bold text-gray-300">CONTACT INFO:</h3>
                             <div className="flex items-center gap-2">
                                 <Mail size={14} className="text-cyber-primary" />
-                                <a href="mailto:lautaromir2@gmail.com" className="hover:text-cyber-primary transition-colors">lautaromir2@gmail.com</a>
+                                <a href={`mailto:${resume.personalInfo.email}`} className="hover:text-cyber-primary transition-colors">{resume.personalInfo.email}</a>
                             </div>
                             <div className="flex items-center gap-2">
                                 <Github size={14} className="text-cyber-primary" />
-                                <a href="https://github.com/Zarc1799" target="_blank" rel="noopener noreferrer" className="hover:text-cyber-primary transition-colors">github.com/Zarc1799</a>
+                                <a href={resume.personalInfo.github} target="_blank" rel="noopener noreferrer" className="hover:text-cyber-primary transition-colors">GitHub Profile</a>
                             </div>
                             <div className="flex items-center gap-2">
                                 <Linkedin size={14} className="text-cyber-primary" />
-                                <a href="https://linkedin.com/in/lautaromir" target="_blank" rel="noopener noreferrer" className="hover:text-cyber-primary transition-colors">linkedin.com/in/lautaromir</a>
+                                <a href={resume.personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-cyber-primary transition-colors">LinkedIn Profile</a>
                             </div>
                             <div className="flex items-center gap-2">
                                 <Phone size={14} className="text-cyber-primary" />
-                                <span>+34 627 623 807</span>
+                                <span>{resume.personalInfo.phone}</span>
                             </div>
                         </div>
                     </div>
