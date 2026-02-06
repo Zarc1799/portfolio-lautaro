@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { resume } from "../data/resume";
 import { Server, Database, Activity, Lock, ArrowUpRight } from "lucide-react";
+import NetworkDiagram from "./NetworkDiagram";
 
 export default function Projects() {
     return (
@@ -48,37 +49,13 @@ export default function Projects() {
                                     </div>
                                 </div>
 
-                                {/* Right: Metrics/Visuals */}
-                                <div className="space-y-6">
-                                    <div className="bg-slate-950/50 rounded-xl p-6 border border-cyber-primary/10">
-                                        <h4 className="text-sm font-mono text-cyber-muted mb-4 flex items-center gap-2 border-b border-white/5 pb-2">
-                                            <Activity size={16} className="text-green-500" /> SYSTEM ARCHITECTURE
-                                        </h4>
-
-                                        <div className="grid gap-4">
-                                            <div className="flex items-start gap-3">
-                                                <div className="p-2 bg-blue-500/10 rounded text-blue-400 mt-1"><Server size={18} /></div>
-                                                <div>
-                                                    <div className="text-white font-bold">OpenLDAP + Roaming</div>
-                                                    <div className="text-xs text-cyber-muted">Data Portability across nodes</div>
-                                                </div>
-                                            </div>
-                                            <div className="flex items-start gap-3">
-                                                <div className="p-2 bg-purple-500/10 rounded text-purple-400 mt-1"><Database size={18} /></div>
-                                                <div>
-                                                    <div className="text-white font-bold">Automated NAS Backups</div>
-                                                    <div className="text-xs text-cyber-muted">RAID-Z Fault Tolerance</div>
-                                                </div>
-                                            </div>
-                                            <div className="flex items-start gap-3">
-                                                <div className="p-2 bg-red-500/10 rounded text-red-400 mt-1"><Activity size={18} /></div>
-                                                <div>
-                                                    <div className="text-white font-bold">Zabbix + Telegram</div>
-                                                    <div className="text-xs text-cyber-muted">Instant Alerting Pipeline</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                {/* Right: Metrics/Visuals or Interactive Diagram */}
+                                <div className="min-h-[400px] relative">
+                                    <div className="absolute inset-0 bg-cyber-primary/5 rounded-xl blur-xl" />
+                                    <NetworkDiagram />
+                                    <p className="text-center text-xs text-cyber-muted mt-2 font-mono opacity-70">
+                                        [INTERACTIVE TOPOLOGY - HOVER NODES FOR DETAILS]
+                                    </p>
                                 </div>
                             </div>
                         </motion.div>

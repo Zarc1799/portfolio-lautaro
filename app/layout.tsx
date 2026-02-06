@@ -14,6 +14,7 @@ import TorFrame from "./components/TorFrame";
 import { WebOSProvider } from "./context/WebOSContext";
 import DesktopEnvironment from "./components/DesktopEnvironment";
 import CustomCursor from "./components/CustomCursor";
+import { CorporateProvider } from "./context/CorporateContext";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetbrainsMono = JetBrains_Mono({
@@ -62,25 +63,27 @@ export default function RootLayout({
         <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
             <body>
                 <LanguageProvider>
-                    <AchievementProvider>
-                        <DarkWebProvider>
-                            <WebOSProvider>
-                                <StealthProvider>
-                                    <ClientBiosWrapper>
-                                        <CustomCursor />
-                                        <TorFrame />
-                                        <DesktopEnvironment />
-                                        <StealthLayer />
-                                        <SocDashboard />
-                                        <CyberRain />
-                                        <EasterEggs />
-                                        <SystemStatus />
-                                        {children}
-                                    </ClientBiosWrapper>
-                                </StealthProvider>
-                            </WebOSProvider>
-                        </DarkWebProvider>
-                    </AchievementProvider>
+                    <CorporateProvider>
+                        <AchievementProvider>
+                            <DarkWebProvider>
+                                <WebOSProvider>
+                                    <StealthProvider>
+                                        <ClientBiosWrapper>
+                                            <CustomCursor />
+                                            <TorFrame />
+                                            <DesktopEnvironment />
+                                            <StealthLayer />
+                                            <SocDashboard />
+                                            <CyberRain />
+                                            <EasterEggs />
+                                            <SystemStatus />
+                                            {children}
+                                        </ClientBiosWrapper>
+                                    </StealthProvider>
+                                </WebOSProvider>
+                            </DarkWebProvider>
+                        </AchievementProvider>
+                    </CorporateProvider>
                 </LanguageProvider>
             </body>
         </html>
