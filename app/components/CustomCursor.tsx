@@ -59,75 +59,38 @@ export default function CustomCursor() {
 
     if (!isVisible) return null;
 
-    // Crosshair Lines (Vertical & Horizontal)
+    // Minimalist Design
     const variants = {
         default: {
-            height: 20,
-            width: 20,
-            opacity: 1,
-            rotate: 0,
-            backgroundColor: "transparent",
-            borderColor: "rgba(6, 182, 212, 0.5)", // cyan-500/50
-            borderWidth: "1px",
+            height: 10,
+            width: 10,
+            backgroundColor: "#06b6d4", // cyan-500
+            borderWidth: "0px",
+            borderColor: "transparent",
+            opacity: 0.8,
             scale: 1,
         },
         hover: {
-            height: 48,
-            width: 48,
+            height: 32,
+            width: 32,
+            backgroundColor: "transparent",
+            borderWidth: "1px",
+            borderColor: "#06b6d4", // cyan-500
             opacity: 1,
-            rotate: 45,
-            backgroundColor: "rgba(6, 182, 212, 0.1)",
-            borderColor: "#22d3ee", // cyan-400
-            borderWidth: "2px",
-            scale: 1.2,
+            scale: 1,
         }
     };
 
-    const dotVariants = {
-        default: { opacity: 1, scale: 1 },
-        hover: { opacity: 0, scale: 0 }
-    };
-
     return (
-        <div className="pointer-events-none fixed top-0 left-0 z-[9999] hidden md:block">
-            {/* Main Crosshair Box */}
-            <motion.div
-                className="fixed top-0 left-0 border border-cyber-primary rounded-sm pointer-events-none z-[9999]"
-                variants={variants}
-                animate={isHovering ? "hover" : "default"}
-                transition={{ type: "spring", stiffness: 500, damping: 28 }}
-                style={{
-                    x: mousePosition.x - (isHovering ? 24 : 10),
-                    y: mousePosition.y - (isHovering ? 24 : 10),
-                }}
-            >
-                {/* Corner Accents for "Tech" feel */}
-                <div className="absolute -top-[1px] -left-[1px] w-2 h-2 border-t border-l border-cyber-primary" />
-                <div className="absolute -top-[1px] -right-[1px] w-2 h-2 border-t border-r border-cyber-primary" />
-                <div className="absolute -bottom-[1px] -left-[1px] w-2 h-2 border-b border-l border-cyber-primary" />
-                <div className="absolute -bottom-[1px] -right-[1px] w-2 h-2 border-b border-r border-cyber-primary" />
-            </motion.div>
-
-            {/* Center Dot */}
-            <motion.div
-                className="fixed top-0 left-0 w-1 h-1 bg-cyber-primary rounded-full pointer-events-none z-[9999]"
-                variants={dotVariants}
-                animate={isHovering ? "hover" : "default"}
-                style={{
-                    x: mousePosition.x,
-                    y: mousePosition.y,
-                }}
-            />
-
-            {/* Trailing Crosshair Lines (Full Screen) */}
-            <div
-                className="fixed top-0 left-0 w-full h-px bg-cyber-primary/10 pointer-events-none z-[9998]"
-                style={{ top: mousePosition.y }}
-            />
-            <div
-                className="fixed top-0 left-0 w-px h-full bg-cyber-primary/10 pointer-events-none z-[9998]"
-                style={{ left: mousePosition.x }}
-            />
-        </div>
+        <motion.div
+            className="fixed top-0 left-0 rounded-full pointer-events-none z-[9999] hidden md:block mix-blend-screen"
+            variants={variants}
+            animate={isHovering ? "hover" : "default"}
+            transition={{ type: "spring", stiffness: 800, damping: 35, mass: 0.5 }}
+            style={{
+                x: mousePosition.x - (isHovering ? 16 : 5),
+                y: mousePosition.y - (isHovering ? 16 : 5),
+            }}
+        />
     );
 }
