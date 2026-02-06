@@ -35,7 +35,7 @@ export default function SystemStatusWidget() {
     if (isCorporate) return null; // Hide in corporate mode
 
     return (
-        <div className="fixed bottom-4 right-4 z-40 hidden lg:flex flex-col gap-2 pointer-events-none select-none">
+        <div className="fixed bottom-4 right-4 z-40 flex flex-col gap-2 pointer-events-none select-none">
             <div className="bg-black/60 backdrop-blur-md border border-cyber-primary/30 p-3 rounded-lg text-xs font-mono text-cyber-primary shadow-[0_0_15px_rgba(6,182,212,0.1)] w-64">
                 <div className="flex items-center justify-between mb-2 border-b border-cyber-primary/20 pb-1">
                     <span className="flex items-center gap-2 font-bold">
