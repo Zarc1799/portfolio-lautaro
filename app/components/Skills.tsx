@@ -6,12 +6,6 @@ import { useLanguage } from "../context/LanguageContext";
 import { resume } from "../data/resume";
 import dynamic from "next/dynamic";
 
-// Dynamic import for 3D component with no SSR to prevent build errors
-const WorldGlobe = dynamic(() => import("./WorldGlobe"), {
-    ssr: false,
-    loading: () => <div className="w-full h-full flex items-center justify-center text-cyber-primary/30 animate-pulse">Initializing 3D Core...</div>
-});
-
 // Map skill categories to icons
 const iconMap: Record<string, any> = {
     networking: Network,
