@@ -1,20 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import EasterEggs from "./components/EasterEggs";
-import SystemStatus from "./components/SystemStatus";
-import { StealthProvider } from "./context/StealthContext";
-import StealthLayer from "./components/StealthLayer";
 import { LanguageProvider } from "./context/LanguageContext";
-import ClientBiosWrapper from "./components/ClientBiosWrapper";
-import SocDashboard from "./components/SocDashboard";
-import { AchievementProvider } from "./context/AchievementContext";
-import { DarkWebProvider } from "./context/DarkWebContext";
-import TorFrame from "./components/TorFrame";
-import { WebOSProvider } from "./context/WebOSContext";
-import DesktopEnvironment from "./components/DesktopEnvironment";
-import CustomCursor from "./components/CustomCursor";
-import { CorporateProvider } from "./context/CorporateContext";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetbrainsMono = JetBrains_Mono({
@@ -50,10 +37,6 @@ export const metadata: Metadata = {
     ],
 };
 
-import CyberRain from "./components/CyberRain";
-
-// ... existing imports
-
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -61,29 +44,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
-            <body>
+            <body className="bg-cyber-background text-cyber-text selection:bg-cyber-primary/30 selection:text-cyber-primary">
                 <LanguageProvider>
-                    <CorporateProvider>
-                        <AchievementProvider>
-                            <DarkWebProvider>
-                                <WebOSProvider>
-                                    <StealthProvider>
-                                        <ClientBiosWrapper>
-                                            <CustomCursor />
-                                            <TorFrame />
-                                            <DesktopEnvironment />
-                                            <StealthLayer />
-                                            <SocDashboard />
-                                            <CyberRain />
-                                            <EasterEggs />
-                                            <SystemStatus />
-                                            {children}
-                                        </ClientBiosWrapper>
-                                    </StealthProvider>
-                                </WebOSProvider>
-                            </DarkWebProvider>
-                        </AchievementProvider>
-                    </CorporateProvider>
+                    {children}
                 </LanguageProvider>
             </body>
         </html>

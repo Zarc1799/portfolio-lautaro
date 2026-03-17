@@ -2,9 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { X, Minus, Square, Terminal as TerminalIcon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
-import { useAchievement } from "../context/AchievementContext";
-import { useDarkWeb } from "../context/DarkWebContext";
-import { useWebOS } from "../context/WebOSContext";
 import { useSound } from "../hooks/useSound";
 
 interface TerminalModalProps {
@@ -60,9 +57,6 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
     const bottomRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const hasBooted = useRef(false);
-    const { unlock } = useAchievement();
-    const { toggleDarkWeb } = useDarkWeb();
-    const { toggleWebOS } = useWebOS();
 
     const [isRoot, setIsRoot] = useState(false);
 
@@ -142,7 +136,6 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
                     setTimeout(() => {
                         play("success");
                         setIsRoot(true);
-                        unlock("hacker");
                         setHistory(prev => [...prev, "ACCESS GRANTED. WELCOME, ADMINISTRATOR.", "", "Secret Contact Unlocked: +34 627 623 807 (Priority Line)"]);
                     }, 2000);
                     return; // Return early to handle async history update
@@ -154,15 +147,14 @@ export default function TerminalModal({ isOpen, onClose }: TerminalModalProps) {
                 play("boot");
                 setHistory(prev => [...prev, `${terminalConfig.user} @${terminalConfig.host}:${currentDir}$ ${cmd} `, "Connecting to TOR network...", "Establishing secure tunnel..."]);
                 setTimeout(() => {
-                    toggleDarkWeb();
-                    setHistory(prev => [...prev, "Connection Established.", "WARNING: You are now entering the Dark Web."]);
+                    setHistory(prev => [...prev, "Connection Failed.", "WARNING: Protocol not supported in this environment."]);
                 }, 1500);
                 return;
             case "os_boot":
                 play("boot");
                 setHistory(prev => [...prev, `${terminalConfig.user} @${terminalConfig.host}:${currentDir}$ ${cmd} `, "Booting WebOS Kernel..."]);
                 setTimeout(() => {
-                    toggleWebOS();
+                    setHistory(prev => [...prev, "Boot Failed.", "WebOS is no longer supported."]);
                 }, 1000);
                 return;
             case "skills":

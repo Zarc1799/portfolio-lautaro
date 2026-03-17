@@ -10,11 +10,11 @@ const config: Config = {
         extend: {
             colors: {
                 cyber: {
-                    background: "#020617", // Slate 950
-                    surface: "#0f172a", // Slate 900
-                    primary: "#06b6d4", // Cyan 500
-                    secondary: "#8b5cf6", // Violet 500
-                    accent: "#f43f5e", // Rose 500
+                    background: "#0B1120", // Deep modern dark
+                    surface: "#111827", // Gray 900
+                    primary: "#38bdf8", // Sky 400
+                    secondary: "#818cf8", // Indigo 400
+                    accent: "#22d3ee", // Cyan 400
                     text: "#f8fafc", // Slate 50
                     muted: "#94a3b8", // Slate 400
                 },
@@ -25,8 +25,7 @@ const config: Config = {
             },
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-                "cyber-grid":
-                    "linear-gradient(to right, #1e293b 1px, transparent 1px), linear-gradient(to bottom, #1e293b 1px, transparent 1px)",
+                "custom-grid": "linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
             },
         },
     },

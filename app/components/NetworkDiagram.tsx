@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { Server, Shield, Globe, Database, Smartphone, Laptop, Cloud } from "lucide-react";
 import { useState } from "react";
-import { useCorporate } from "../context/CorporateContext";
 
 // Node Types
 type NodeType = "server" | "firewall" | "internet" | "db" | "client" | "cloud";
@@ -53,7 +52,7 @@ const iconMap: Record<NodeType, any> = {
 
 export default function NetworkDiagram() {
     const [hoveredNode, setHoveredNode] = useState<string | null>(null);
-    const { isCorporate } = useCorporate();
+    const isCorporate = false;
     // Allow dragging by state, but framer motion handles it mostly. 
     // We need state to track positions if we want lines to follow, but standard SVG lines won't follow dragged motion divs automatically without state updates.
     // For simplicity/performance in this iteration, we'll keep lines static or specific just to node default positions, 

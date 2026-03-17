@@ -33,15 +33,15 @@ export default function Hero() {
             <div className="absolute inset-0 z-0 bg-grid opacity-30 pointer-events-none" />
 
             {/* Animated Gradient Blob */}
-            <div className="absolute top-1/4 -left-20 w-72 h-72 bg-cyber-primary/20 rounded-full blur-[100px] animate-pulse" />
-            <div className="absolute bottom-1/4 -right-20 w-72 h-72 bg-cyber-secondary/20 rounded-full blur-[100px] animate-pulse delay-1000" />
+            <div className="absolute top-1/4 -left-20 w-72 h-72 bg-cyber-primary/10 rounded-full blur-[100px] animate-pulse" />
+            <div className="absolute bottom-1/4 -right-20 w-72 h-72 bg-cyber-secondary/10 rounded-full blur-[100px] animate-pulse delay-1000" />
 
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyber-primary/30 bg-cyber-primary/5 text-cyber-primary mb-8 font-mono text-sm"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-slate-800/50 backdrop-blur-sm shadow-xl text-cyber-primary mb-8 font-mono text-sm"
                 >
                     <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber-primary opacity-75"></span>
@@ -81,7 +81,7 @@ export default function Hero() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         href="#contact"
-                        className="flex items-center gap-2 px-8 py-3 bg-cyber-primary text-cyber-background font-bold rounded-lg shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] transition-all"
+                        className="flex items-center gap-2 px-8 py-3 bg-cyber-primary text-slate-900 font-bold rounded-lg shadow-[0_0_15px_rgba(56,189,248,0.4)] hover:shadow-[0_0_25px_rgba(56,189,248,0.6)] transition-all"
                         onMouseEnter={() => play("hover")}
                         onClick={() => play("click")}
                     >

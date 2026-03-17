@@ -3,15 +3,14 @@
 @tailwind utilities;
 
 ::selection {
-    background-color: #06b6d4;
-    /* Cyber Cyan */
+    background-color: #38bdf8;
     color: #000000;
 }
 
 :root {
     --foreground-rgb: 248, 250, 252;
-    --background-start-rgb: 2, 6, 23;
-    --background-end-rgb: 15, 23, 42;
+    --background-start-rgb: 11, 17, 32;
+    --background-end-rgb: 17, 24, 39;
 }
 
 @layer base {
@@ -19,11 +18,6 @@
         --background: 222.2 84% 4.9%;
         --foreground: 210 40% 98%;
     }
-}
-
-.dark-web-mode {
-    filter: contrast(1.2) grayscale(0.8) sepia(0.2) hue-rotate(90deg);
-    transition: filter 0.5s ease;
 }
 
 body {
@@ -37,116 +31,40 @@ body {
 
 @layer utilities {
     .text-glow {
-        text-shadow: 0 0 10px rgba(6, 182, 212, 0.5),
-            0 0 20px rgba(6, 182, 212, 0.3);
+        text-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
     }
 
     .border-glow {
-        box-shadow: 0 0 10px rgba(6, 182, 212, 0.3),
-            inset 0 0 10px rgba(6, 182, 212, 0.1);
+        box-shadow: 0 0 15px rgba(56, 189, 248, 0.15),
+            inset 0 0 10px rgba(56, 189, 248, 0.05);
     }
 
     .bg-grid {
-        background-size: 40px 40px;
-        background-image: linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
-        mask-image: radial-gradient(circle at center, black, transparent 80%);
+        background-size: 50px 50px;
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        mask-image: linear-gradient(to bottom, black, transparent 80%);
     }
 
     .glass {
-        @apply bg-slate-900/70 backdrop-blur-md border border-slate-700/50;
-    }
-
-    @keyframes packet-flow {
-        0% {
-            left: -10%;
-        }
-
-        100% {
-            left: 110%;
-        }
-    }
-
-    .animate-packet-flow {
-        animation: packet-flow 2s linear infinite;
+        @apply bg-slate-900/40 backdrop-blur-xl border border-white/10 shadow-2xl;
     }
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Professional */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #0f172a;
+    background: #0B1120;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #334155;
-    border-radius: 4px;
+    background: #1e293b;
+    border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #475569;
-}
-
-/* CORPORATE MODE OVERRIDES */
-.corporate-mode body {
-    background: #f8fafc !important;
-    /* Slate-50 */
-    color: #0f172a !important;
-    /* Slate-900 */
-}
-
-/* Hide cyber effects in corporate mode for performance and style */
-.corporate-mode .bg-grid,
-.corporate-mode .text-glow,
-.corporate-mode .border-glow,
-.corporate-mode .glass {
-    background-image: none !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-    background-color: transparent !important;
-    border-color: #cbd5e1 !important;
-    /* Slate-300 */
-}
-
-.corporate-mode .glass {
-    background-color: white !important;
-    border: 1px solid #e2e8f0 !important;
-}
-
-/* Simplify animations in corporate mode */
-.corporate-mode * {
-    animation: none !important;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Ensure text readability */
-.corporate-mode h1,
-.corporate-mode h2,
-.corporate-mode h3,
-.corporate-mode h4,
-.corporate-mode p,
-.corporate-mode span,
-.corporate-mode li {
-    text-shadow: none !important;
-    font-family: var(--font-inter), sans-serif !important;
-    /* Force cleaner font */
-}
-
-.corporate-mode .text-cyber-primary,
-.corporate-mode .text-cyber-secondary,
-.corporate-mode .text-cyber-accent {
-    color: #0f172a !important;
-    /* Dark text for all cyber colors */
-}
-
-.corporate-mode .text-cyber-muted {
-    color: #64748b !important;
-    /* Slate-500 */
-}
-
-.corporate-mode .bg-cyber-primary {
-    background-color: #334155 !important;
+    background: #334155;
 }

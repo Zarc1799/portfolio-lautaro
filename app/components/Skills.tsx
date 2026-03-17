@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { Terminal, Cpu, Network, Shield, Database, Code, Layout, Globe, Activity } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
-import { useAchievement } from "../context/AchievementContext";
 import { resume } from "../data/resume";
 import dynamic from "next/dynamic";
 
@@ -27,7 +26,6 @@ const iconMap: Record<string, any> = {
 
 export default function Skills() {
     const { t } = useLanguage();
-    const { unlock } = useAchievement();
     const categories: Array<keyof typeof resume.skills> = ['networking', 'security', 'infrastructure', 'development'];
 
     return (
