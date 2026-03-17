@@ -10,21 +10,22 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Lautaro Mir | Enterprise Systems Architect",
+    metadataBase: new URL("https://lautaromir.com"),
+    title: "Lautaro Mir | Enterprise Systems & AI Architect",
     description:
         "Portfolio of Lautaro Mir. Expert in OpenLDAP, NAS Infrastructure, and Zabbix Monitoring. Certified Mikrotik Associate.",
     openGraph: {
-        title: "Lautaro Mir - Systems Architect",
+        title: "Lautaro Mir - Systems & AI Architect",
         description:
-            "Designing fault-tolerant networks and secure authentication systems.",
+            "Designing fault-tolerant networks, secure authentication systems, and autonomous multi-agent AI frameworks.",
         type: "website",
         locale: "en_US",
-        url: "https://lautaro-mir.vercel.app",
+        url: "https://lautaromir.com",
     },
     twitter: {
         card: "summary_large_image",
-        title: "Lautaro Mir | CyberSec & Systems",
-        description: "Designing fault-tolerant networks and secure authentication systems.",
+        title: "Lautaro Mir | CyberSec & AI Systems",
+        description: "Designing fault-tolerant networks and autonomous multi-agent frameworks.",
     },
     keywords: [
         "Cybersecurity",
@@ -34,6 +35,10 @@ export const metadata: Metadata = {
         "NAS",
         "System Admin",
         "Network Engineering",
+        "AI Agents",
+        "n8n",
+        "Multi-Agent Systems",
+        "Systems Architect Barcelona"
     ],
 };
 

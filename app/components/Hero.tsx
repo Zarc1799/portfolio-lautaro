@@ -6,7 +6,11 @@ import { ShieldAlert, Terminal, ArrowRight, Shield } from "lucide-react";
 import DecryptedText from "./DecryptedText";
 import { useLanguage } from "../context/LanguageContext";
 import { useSound } from "../hooks/useSound";
-import Spline from '@splinetool/react-spline';
+import dynamic from 'next/dynamic';
+
+const Spline = dynamic(() => import('@splinetool/react-spline'), {
+    ssr: false,
+});
 
 export default function Hero() {
     const [text, setText] = useState("");
@@ -84,6 +88,7 @@ export default function Hero() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         href="#contact"
+                        aria-label="Contact Lautaro"
                         className="flex items-center gap-2 px-8 py-3 bg-cyber-primary text-slate-900 font-bold rounded-lg shadow-[0_0_15px_rgba(56,189,248,0.4)] hover:shadow-[0_0_25px_rgba(56,189,248,0.6)] transition-all"
                         onMouseEnter={() => play("hover")}
                         onClick={() => play("click")}
@@ -96,6 +101,7 @@ export default function Hero() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         href="#skills"
+                        aria-label="View Technical Skills"
                         className="flex items-center gap-2 px-8 py-3 glass text-cyber-text font-medium rounded-lg hover:border-cyber-primary/50 transition-all font-mono"
                         onMouseEnter={() => play("hover")}
                         onClick={() => play("click")}
@@ -110,6 +116,7 @@ export default function Hero() {
                         href="https://github.com/Zarc1799"
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Visit GitHub Profile"
                         className="flex items-center gap-2 px-8 py-3 bg-slate-800 text-gray-300 font-medium rounded-lg border border-gray-700 hover:border-slate-500 hover:bg-slate-700 transition-all font-mono"
                         onMouseEnter={() => play("hover")}
                         onClick={() => play("click")}
