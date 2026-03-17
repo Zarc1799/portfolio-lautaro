@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Lock } from "lucide-react";
-import NetworkDiagram from "./NetworkDiagram";
 import { useLanguage } from "../context/LanguageContext";
 
 export default function Projects() {
@@ -27,8 +26,7 @@ export default function Projects() {
                         >
                             <div className="absolute inset-0 bg-gradient-to-br from-cyber-primary/5 via-transparent to-cyber-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                            <div className="p-8 md:p-12 relative z-10 grid md:grid-cols-2 gap-8 md:gap-12">
-                                {/* Left: Info */}
+                            <div className="p-8 md:p-12 relative z-10 w-full max-w-4xl mx-auto">
                                 <div className="space-y-6">
                                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyber-primary/10 text-cyber-primary text-xs font-mono border border-cyber-primary/20">
                                         <Lock size={12} /> {t.projects.badge}
@@ -49,15 +47,6 @@ export default function Projects() {
                                             </span>
                                         ))}
                                     </div>
-                                </div>
-
-                                {/* Right: Metrics/Visuals or Interactive Diagram */}
-                                <div className="min-h-[400px] relative">
-                                    <div className="absolute inset-0 bg-cyber-primary/5 rounded-xl blur-xl" />
-                                    <NetworkDiagram />
-                                    <p className="text-center text-xs text-cyber-muted mt-2 font-mono opacity-70">
-                                        {t.networkDiagram.dragHint}
-                                    </p>
                                 </div>
                             </div>
                         </motion.div>

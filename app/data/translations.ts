@@ -75,7 +75,7 @@ export const translations = {
             ],
             developmentList: [
                 "AI Agents & Automation (n8n)",
-                "Python (Intermed)",
+                "Python (Automation & AI Advanced)",
                 "SQL / MySQL",
                 "Blockchain & Tokenization"
             ],
@@ -99,6 +99,12 @@ export const translations = {
                 },
             ],
             work: [
+                {
+                    role: "IT Systems Technician",
+                    company: "INAS Italia (Consulate Annex)",
+                    period: "Completed",
+                    description: "Provided comprehensive IT support and remote systems administration. Resolved complex hardware and software issues locally and implemented remote access solutions to ensure operational continuity for consulate-affiliated services.",
+                },
                 {
                     role: "Specialized Warehouse Worker",
                     company: "Massimo Dutti",
@@ -190,9 +196,14 @@ export const translations = {
             badge: "ENTERPRISE GRADE",
             list: [
                 {
-                    title: "Secure Enterprise Infrastructure & Centralized Auth",
+                    title: "Zero-Trust Enterprise Infrastructure & Centralized Auth",
                     description: "Designed a fault-tolerant network architecture featuring centralized authentication via OpenLDAP with Roaming Profiles, ensuring user data portability across any workstation. Implemented automated backup pipelines to a dedicated NAS. Integrated a Zabbix monitoring ecosystem with real-time critical alerts pushed to Telegram, ensuring 99.9% uptime visibility.",
                     tech: ["OpenLDAP", "MariaDB", "Zabbix", "Telegram API", "TrueNAS", "Bash"]
+                },
+                {
+                    title: "Autonomous Multi-Agent IT Orchestration Framework",
+                    description: "Designed and programmed from scratch a distributed artificial intelligence framework capable of resolving incidents and planning infrastructure without human intervention. The system orchestrates a swarm of LLMs with specialized roles (Architect, SecOps, Developer) communicating asynchronously via message queues (mailboxes) and OS-level semaphores (locks) to prevent race conditions. Integrated with n8n automation flows, the system autonomously reads tickets, debates solutions in a broadcast channel, and modifies enterprise server environments safely, achieving an 80% reduction in Level 1 ticket resolution times.",
+                    tech: ["Python (Concurrency)", "n8n", "LLM APIs (OpenAI/Claude)", "Linux IPC", "JSON Automation", "Bash"]
                 }
             ]
         }
@@ -271,7 +282,7 @@ export const translations = {
             ],
             developmentList: [
                 "Agentes IA y Automatización (n8n)",
-                "Python (Intermedio)",
+                "Python (Automatización & IA Avanzada)",
                 "SQL / MySQL",
                 "Blockchain y Tokenización"
             ],
@@ -295,6 +306,12 @@ export const translations = {
                 },
             ],
             work: [
+                {
+                    role: "Técnico de Sistemas IT",
+                    company: "INAS Italia (Anexo Consular)",
+                    period: "Completado",
+                    description: "Soporte TI integral y administración de sistemas en remoto. Resolución de incidencias críticas de hardware/software a nivel local e implementación de soluciones de acceso remoto seguras para garantizar la continuidad operativa de los servicios vinculados al consulado.",
+                },
                 {
                     role: "Operario de Almacén Especializado",
                     company: "Massimo Dutti",
@@ -386,9 +403,14 @@ export const translations = {
             badge: "GRADO EMPRESARIAL",
             list: [
                 {
-                    title: "Infraestructura Empresarial Segura y Autenticación Centralizada",
+                    title: "Infraestructura Empresarial Zero-Trust y Autenticación Centralizada",
                     description: "Diseñé una arquitectura de red tolerante a fallos con autenticación centralizada vía OpenLDAP y Perfiles Móviles, asegurando la portabilidad de datos de usuario en cualquier estación. Implementé pipelines de backup automatizados a un NAS dedicado. Integré un ecosistema de monitorización Zabbix con alertas críticas en tiempo real a Telegram, asegurando visibilidad de uptime del 99.9%.",
                     tech: ["OpenLDAP", "MariaDB", "Zabbix", "Telegram API", "TrueNAS", "Bash"]
+                },
+                {
+                    title: "Framework Autónomo de Orquestación IT Multi-Agente (A.M.A.S.)",
+                    description: "Diseñé y programé desde cero un framework de inteligencia artificial distribuido habilitado para resolver incidencias y planificar infraestructura sin intervención humana. El sistema orquesta un enjambre de LLMs con roles especializados (Arquitecto, SecOps, Desarrollador) que se comunican de forma asíncrona mediante sistemas de colas de mensajes (mailboxes) y semáforos (locks) a nivel de sistema operativo para prevenir condiciones de carrera. Integrado con flujos de automación en n8n, el sistema es capaz de leer tickets, debatir soluciones y modificar entornos de servidores locales de forma autónoma, reduciendo un 80% los tiempos de resolución de tickets de Nivel 1.",
+                    tech: ["Python (Concurrencia)", "n8n", "LLM APIs (OpenAI/Claude)", "Linux IPC", "JSON Automation", "Bash"]
                 }
             ]
         }
@@ -467,7 +489,7 @@ export const translations = {
             ],
             developmentList: [
                 "Agents IA i Automatització (n8n)",
-                "Python (Intermedi)",
+                "Python (Automatització & IA Avançada)",
                 "SQL / MySQL",
                 "Blockchain i Tokenització"
             ],
@@ -491,6 +513,12 @@ export const translations = {
                 },
             ],
             work: [
+                {
+                    role: "Tècnic de Sistemes IT",
+                    company: "INAS Italia (Annex Consular)",
+                    period: "Completat",
+                    description: "Suport TI integral i administració de sistemes en remot. Resolució d'incidències crítiques de maquinari/programari a nivell local o implementació de solucions d'accés remot segures per garantir la continuïtat operativa dels serveis vinculats al consolat.",
+                },
                 {
                     role: "Operari de Magatzem Especialitzat",
                     company: "Massimo Dutti",
@@ -582,9 +610,14 @@ export const translations = {
             badge: "GRAU EMPRESARIAL",
             list: [
                 {
-                    title: "Infraestructura Empresarial Segura i Autenticació Centralitzada",
+                    title: "Infraestructura Empresarial Zero-Trust i Autenticació Centralitzada",
                     description: "Vaig dissenyar una arquitectura de xarxa tolerant a fallades amb autenticació centralitzada via OpenLDAP i Perfils Mòbils, assegurant la portabilitat de dades d'usuari a qualsevol estació. Vaig implementar pipelines de còpia de seguretat automatitzats a un NAS dedicat. Vaig integrar un ecosistema de monitoratge Zabbix amb alertes crítiques en temps real a Telegram, assegurant visibilitat d'uptime del 99.9%.",
                     tech: ["OpenLDAP", "MariaDB", "Zabbix", "Telegram API", "TrueNAS", "Bash"]
+                },
+                {
+                    title: "Framework Autònom d'Orquestració IT Multi-Agent",
+                    description: "Vaig dissenyar i programar des de zero un framework d'intel·ligència artificial distribuït habilitat per resoldre incidències i planificar infraestructura sense intervenció humana. El sistema orquestra un eixam de LLMs amb rols especialitzats (Arquitecte, SecOps, Desenvolupador) que es comuniquen de forma asíncrona mitjançant cues de missatges (mailboxes) i semàfors (locks) a nivell de sistema operatiu per prevenir condicions de carrera. Integrat amb fluxos d'automació en n8n, l'agent llegeix els tiquets, debat solucions i modifica entorns de servidors locals de forma autònoma, reduint un 80% els temps de resolució de tiquets de Nivell 1.",
+                    tech: ["Python (Concurrència)", "n8n", "LLM APIs (OpenAI/Claude)", "Linux IPC", "JSON Automation", "Bash"]
                 }
             ]
         }
@@ -664,7 +697,7 @@ export const translations = {
             ],
             developmentList: [
                 "AI 代理 & 自动化 (n8n)",
-                "Python (中级)",
+                "Python (高级自动化与AI)",
                 "SQL / MySQL",
                 "区块链 & 代币化"
             ],
@@ -688,6 +721,12 @@ export const translations = {
                 },
             ],
             work: [
+                {
+                    role: "IT 系统技术员",
+                    company: "INAS Italia (领事馆附属)",
+                    period: "已完成",
+                    description: "提供全面的 IT 支持和远程系统管理。在本地解决复杂的硬件和软件问题，并实施远程访问解决方案，以确保与领事馆相关服务的运营连续性。",
+                },
                 {
                     role: "专业仓库操作员",
                     company: "Massimo Dutti",
@@ -779,9 +818,14 @@ export const translations = {
             badge: "企业级",
             list: [
                 {
-                    title: "安全企业基础设施与集中认证",
+                    title: "零信任企业基础设施与集中认证",
                     description: "设计了一个具有通过 OpenLDAP 和漫游配置文件进行集中认证的容错网络架构，确保用户数据在任何工作站上的可移植性。实施了自动备份管道到专用 NAS。集成了 Zabbix 监控生态系统，将实时关键警报推送到 Telegram，确保 99.9% 的正常运行时间可见性。",
                     tech: ["OpenLDAP", "MariaDB", "Zabbix", "Telegram API", "TrueNAS", "Bash"]
+                },
+                {
+                    title: "自主多智能体IT编排框架",
+                    description: "从零开始设计并编程了一个分布式人工智能框架，能够在没有人工干预的情况下解决事件并规划基础设施。该系统编排了一群具有专门角色（架构师、安全运营、开发人员）的LLM，通过消息队列（mailboxes）和操作系统级信号量（locks）进行异步通信，以防止竞态条件。与n8n自动化工作流集成，系统可自主读取工单、讨论解决方案并安全地修改企业服务器环境，将一级工单解决时间缩短了80%。",
+                    tech: ["Python (并发)", "n8n", "LLM APIs", "Linux IPC", "JSON 自动化", "Bash"]
                 }
             ]
         }
