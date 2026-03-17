@@ -121,6 +121,34 @@ export default function About() {
                             </div>
                         </div>
                     </div>
+
+                    {/* Live GitHub Metrics */}
+                    <div className="mt-16 w-full flex flex-col items-center border-t border-cyber-primary/10 pt-10">
+                        <h3 className="text-xl font-bold mb-8 text-cyber-text font-mono flex items-center gap-3">
+                            <Github className="text-cyber-primary" size={24} />
+                            Live Developer Metrics
+                        </h3>
+                        <div className="flex flex-col lg:flex-row gap-6 justify-center w-full items-center">
+                            <motion.img 
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.2 }}
+                                src="https://github-readme-stats.vercel.app/api?username=Zarc1799&show_icons=true&theme=transparent&title_color=38bdf8&text_color=94a3b8&icon_color=38bdf8&bg_color=00000000&hide_border=true&locale=en" 
+                                alt="GitHub Stats" 
+                                className="glass rounded-xl object-contain min-w-[300px] hover:border-cyber-primary/50 transition-colors"
+                            />
+                            <motion.img 
+                                initial={{ opacity: 0, x: 20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.4 }}
+                                src="https://github-readme-stats.vercel.app/api/top-langs/?username=Zarc1799&layout=compact&theme=transparent&title_color=38bdf8&text_color=94a3b8&bg_color=00000000&hide_border=true&locale=en" 
+                                alt="Top Languages" 
+                                className="glass rounded-xl object-contain min-w-[300px] hover:border-cyber-primary/50 transition-colors"
+                            />
+                        </div>
+                    </div>
                 </motion.div>
             </div>
         </section>

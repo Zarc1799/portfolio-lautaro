@@ -27,6 +27,15 @@ const config: Config = {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
                 "custom-grid": "linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)",
             },
+            animation: {
+                marquee: 'marquee 35s linear infinite',
+            },
+            keyframes: {
+                marquee: {
+                    '0%': { transform: 'translateX(0%)' },
+                    '100%': { transform: 'translateX(-50%)' },
+                }
+            }
         },
     },
     plugins: [],

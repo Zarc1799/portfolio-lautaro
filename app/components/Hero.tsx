@@ -6,9 +6,11 @@ import { ShieldAlert, Terminal, ArrowRight, Shield } from "lucide-react";
 import DecryptedText from "./DecryptedText";
 import { useLanguage } from "../context/LanguageContext";
 import { useSound } from "../hooks/useSound";
+import TerminalModal from "./TerminalModal";
 
 export default function Hero() {
     const [text, setText] = useState("");
+    const [isTerminalOpen, setIsTerminalOpen] = useState(false);
     const { t } = useLanguage();
     const { play } = useSound();
     // We can localize this typing text too if we want, or keep it "system" style
@@ -91,18 +93,17 @@ export default function Hero() {
                         {t.hero.cta}
                     </motion.a>
 
-                    <motion.a
+                    <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        href="#skills"
-                        aria-label="View Technical Skills"
+                        onClick={() => { play("click"); setIsTerminalOpen(true); }}
+                        aria-label="Open Interactive Terminal"
                         className="flex items-center gap-2 px-8 py-3 glass text-cyber-text font-medium rounded-lg hover:border-cyber-primary/50 transition-all font-mono"
                         onMouseEnter={() => play("hover")}
-                        onClick={() => play("click")}
                     >
                         <Terminal size={20} />
                         {t.hero.secondaryCta}
-                    </motion.a>
+                    </motion.button>
 
                     <motion.a
                         whileHover={{ scale: 1.05 }}
@@ -122,6 +123,8 @@ export default function Hero() {
                     </motion.a>
                 </div>
             </div>
+            
+            <TerminalModal isOpen={isTerminalOpen} onClose={() => setIsTerminalOpen(false)} />
         </section>
     );
 }

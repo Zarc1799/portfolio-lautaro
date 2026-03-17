@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import Marquee from "./components/Marquee";
 import About from "./components/About";
 import Certification from "./components/Certification";
 import Skills from "./components/Skills";
@@ -13,7 +14,8 @@ export default function Home() {
         <main className="min-h-screen text-cyber-text selection:bg-cyber-primary/30 selection:text-cyber-primary bg-cyber-background">
             <Navbar />
             <Hero />
-            <div className="space-y-20 pb-20">
+            <Marquee />
+            <div className="space-y-20 flex flex-col pt-10 pb-20">
                 <About />
                 <Certification />
                 <Skills />
