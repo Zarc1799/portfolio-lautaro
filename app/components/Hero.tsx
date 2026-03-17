@@ -6,11 +6,6 @@ import { ShieldAlert, Terminal, ArrowRight, Shield } from "lucide-react";
 import DecryptedText from "./DecryptedText";
 import { useLanguage } from "../context/LanguageContext";
 import { useSound } from "../hooks/useSound";
-import dynamic from 'next/dynamic';
-
-const Spline = dynamic(() => import('@splinetool/react-spline'), {
-    ssr: false,
-});
 
 export default function Hero() {
     const [text, setText] = useState("");
@@ -129,17 +124,53 @@ export default function Hero() {
                 </div>
                 </div>
 
-                {/* Right Column: 3D Spline Interactive Scene */}
-                <div className="hidden lg:flex w-full h-[500px] xl:h-[650px] items-center justify-center relative rounded-3xl overflow-hidden glass border border-cyber-primary/20 shadow-[0_0_50px_rgba(56,189,248,0.15)] group">
-                    <div className="absolute inset-0 flex items-center justify-center text-cyber-primary">
-                        <div className="w-8 h-8 rounded-full border-t-2 border-r-2 border-cyber-primary animate-spin"></div>
-                    </div>
-                    
+                {/* Right Column: Interactive 3D Cyber Core (Native Framer Motion) */}
+                <div className="hidden lg:flex w-full h-[500px] xl:h-[650px] items-center justify-center relative rounded-3xl overflow-hidden glass border border-cyber-primary/20 shadow-[0_0_50px_rgba(56,189,248,0.15)] group perspective-1000">
                     <div className="absolute inset-0 bg-gradient-to-tr from-cyber-primary/5 via-transparent to-cyber-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
                     
-                    <div className="relative z-20 w-full h-full cursor-grab active:cursor-grabbing">
-                        <Spline scene="https://prod.spline.design/6Wq1Q7YGyMsq1jBo/scene.splinecode" />
-                    </div>
+                    {/* The Core */}
+                    <motion.div 
+                        className="relative w-80 h-80 flex items-center justify-center preserve-3d cursor-crosshair"
+                        animate={{ rotateY: 360, rotateX: 360 }}
+                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                        whileHover={{ scale: 1.1, rotateY: 0, rotateX: 0, transition: { duration: 0.5 } }}
+                    >
+                        {/* Outer Ring */}
+                        <div className="absolute inset-0 border-2 border-slate-700 rounded-full border-t-cyber-primary/80 animate-[spin_8s_linear_infinite]" />
+                        <div className="absolute inset-2 border border-slate-800 rounded-full border-b-cyber-secondary/80 animate-[spin_12s_linear_infinite_reverse]" />
+                        
+                        {/* Middle Tech Ring */}
+                        <div className="absolute inset-8 border-[0.5px] border-dashed border-cyber-primary/40 rounded-full animate-[spin_20s_linear_infinite]" />
+                        
+                        {/* Inner Glowing Core */}
+                        <div className="absolute inset-20 bg-gradient-to-br from-cyber-primary/20 to-cyber-secondary/20 rounded-full backdrop-blur-md border border-white/10 shadow-[0_0_40px_rgba(56,189,248,0.4)] flex items-center justify-center group-hover:shadow-[0_0_80px_rgba(56,189,248,0.8)] transition-all duration-500">
+                            <div className="w-16 h-16 bg-cyber-background rounded-full flex items-center justify-center border border-cyber-primary/30 shadow-inner">
+                                <Terminal className="text-cyber-primary w-8 h-8 animate-pulse" />
+                            </div>
+                        </div>
+
+                        {/* Floating particles */}
+                        {[...Array(6)].map((_, i) => (
+                            <motion.div
+                                key={i}
+                                className="absolute w-2 h-2 bg-cyber-primary rounded-full blur-[1px]"
+                                animate={{
+                                    x: [Math.sin(i) * 100, Math.cos(i) * 150, Math.sin(i) * 100],
+                                    y: [Math.cos(i) * 100, Math.sin(i) * 150, Math.cos(i) * 100],
+                                    scale: [1, 1.5, 1],
+                                }}
+                                transition={{
+                                    duration: 3 + i,
+                                    repeat: Infinity,
+                                    ease: "easeInOut",
+                                }}
+                                style={{
+                                    left: '50%',
+                                    top: '50%',
+                                }}
+                            />
+                        ))}
+                    </motion.div>
                 </div>
 
             </div>
