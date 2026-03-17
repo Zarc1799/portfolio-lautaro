@@ -23,9 +23,9 @@ export default function Marquee() {
             <div className="absolute inset-y-0 right-0 w-[10%] bg-gradient-to-l from-cyber-background to-transparent z-10 pointer-events-none"></div>
 
             <div className="flex w-fit animate-marquee flex-nowrap">
-                <div className="flex shrink-0 justify-around items-center min-w-full">
+                <div className="flex shrink-0 justify-start items-center min-w-full">
                     {endorsements.map((text, i) => (
-                        <div key={`a-${i}`} className="flex items-center gap-4 mx-6 shrink-0">
+                        <div key={`a-${i}`} className="flex items-center gap-4 px-8 shrink-0">
                             <span className="w-1.5 h-1.5 rounded-full bg-cyber-primary animate-pulse shadow-[0_0_10px_#38bdf8]"></span>
                             <span className="text-cyber-muted font-mono text-sm tracking-widest uppercase font-semibold whitespace-nowrap">
                                 {text}
@@ -33,9 +33,9 @@ export default function Marquee() {
                         </div>
                     ))}
                 </div>
-                <div className="flex shrink-0 justify-around items-center min-w-full">
+                <div className="flex shrink-0 justify-start items-center min-w-full">
                     {endorsements.map((text, i) => (
-                        <div key={`b-${i}`} className="flex items-center gap-4 mx-6 shrink-0">
+                        <div key={`b-${i}`} className="flex items-center gap-4 px-8 shrink-0">
                             <span className="w-1.5 h-1.5 rounded-full bg-cyber-primary animate-pulse shadow-[0_0_10px_#38bdf8]"></span>
                             <span className="text-cyber-muted font-mono text-sm tracking-widest uppercase font-semibold whitespace-nowrap">
                                 {text}
